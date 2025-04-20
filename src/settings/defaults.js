@@ -1,17 +1,3 @@
-/*
-      .                              .o8                     oooo
-   .o8                             "888                     `888
- .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
-   888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
-   888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
-   888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
-   "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- ========================================================================
- Created:    02/24/18
- Author:     Chris Brame
-
- **/
-
 const _ = require('lodash')
 const fs = require('fs-extra')
 const path = require('path')
@@ -59,14 +45,14 @@ function rolesDefault (callback) {
   async.series(
     [
       function (done) {
-        roleSchema.getRoleByName('User', function (err, role) {
+        roleSchema.getRoleByName('Пользователь', function (err, role) {
           if (err) return done(err)
           if (role) return done()
 
           roleSchema.create(
             {
-              name: 'User',
-              description: 'Default role for users',
+              name: 'Пользователь',
+              description: 'Роль по умолчанию для пользователей',
               grants: roleDefaults.userGrants
             },
             function (err, userRole) {
@@ -88,7 +74,7 @@ function rolesDefault (callback) {
         })
       },
       function (done) {
-        roleSchema.getRoleByName('Support', function (err, role) {
+        roleSchema.getRoleByName('Поддержка', function (err, role) {
           if (err) return done(err)
           if (role) {
             return done()
@@ -96,8 +82,8 @@ function rolesDefault (callback) {
           } else
             roleSchema.create(
               {
-                name: 'Support',
-                description: 'Default role for agents',
+                name: 'Поддержка',
+                description: 'Роль по умолчанию для агентов',
                 grants: roleDefaults.supportGrants
               },
               done
@@ -105,15 +91,15 @@ function rolesDefault (callback) {
         })
       },
       function (done) {
-        roleSchema.getRoleByName('Admin', function (err, role) {
+        roleSchema.getRoleByName('Админ', function (err, role) {
           if (err) return done(err)
           if (role) return done()
           // role.updateGrants(adminGrants, done);
           else {
             roleSchema.create(
               {
-                name: 'Admin',
-                description: 'Default role for admins',
+                name: 'Админ',
+                description: 'Роль по умолчанию для админов',
                 grants: roleDefaults.adminGrants
               },
               done
@@ -131,9 +117,9 @@ function rolesDefault (callback) {
             if (err) return done(err)
 
             var roleOrder = []
-            roleOrder.push(_.find(roles, { name: 'Admin' })._id)
-            roleOrder.push(_.find(roles, { name: 'Support' })._id)
-            roleOrder.push(_.find(roles, { name: 'User' })._id)
+            roleOrder.push(_.find(roles, { name: 'Админ' })._id)
+            roleOrder.push(_.find(roles, { name: 'Поддержка' })._id)
+            roleOrder.push(_.find(roles, { name: 'Пользователь' })._id)
 
             roleOrderSchema.create(
               {
@@ -249,7 +235,7 @@ function timezoneDefault (callback) {
     if (!setting) {
       var defaultTimezone = new SettingsSchema({
         name: 'gen:timezone',
-        value: 'America/New_York'
+        value: 'Asia/Krasnoyarsk'
       })
 
       defaultTimezone.save(function (err, setting) {
@@ -406,20 +392,20 @@ function ticketPriorityDefaults (callback) {
   var priorities = []
 
   var normal = new PrioritySchema({
-    name: 'Normal',
+    name: 'Нормальный',
     migrationNum: 1,
     default: true
   })
 
   var urgent = new PrioritySchema({
-    name: 'Urgent',
+    name: 'Срочный',
     migrationNum: 2,
     htmlColor: '#8e24aa',
     default: true
   })
 
   var critical = new PrioritySchema({
-    name: 'Critical',
+    name: 'Критический',
     migrationNum: 3,
     htmlColor: '#e65100',
     default: true

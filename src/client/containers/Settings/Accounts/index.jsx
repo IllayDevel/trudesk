@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    5/17/22 2:20 PM
- *  Copyright (c) 2014-2022. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -76,8 +62,8 @@ class AccountsSettingsContainer extends React.Component {
       .catch(error => {
         helpers.hideLoader()
         Log.error(error.responseText)
-        Log.error('Unable to restart server. Server must run under PM2 and Account must have admin rights.')
-        helpers.UI.showSnackbar('Unable to restart server. Are you an Administrator?', true)
+        Log.error('Невозможно перезапустить сервер. Сервер должен работать под управлением PM2, а учетная запись должна иметь права администратора.')
+        helpers.UI.showSnackbar('Невозможно перезапустить сервер. Вы администратор?', true)
       })
       .then(() => {
         this.setState({ restarting: false })
@@ -99,12 +85,12 @@ class AccountsSettingsContainer extends React.Component {
     return (
       <div className={active ? 'active' : 'hide'}>
         <SettingItem
-          title='Allow User Registration'
-          subtitle='Allow users to create accounts on the login screen.'
+          title='Разрешить регистрацию пользователей'
+          subtitle='Разрешить пользователям создавать учетные записи на экране входа в систему.'
           component={
             <EnableSwitch
               stateName='allowUserRegistration'
-              label='Enable'
+              label='Включить'
               checked={this.allowUserRegistrationEnabled}
               onChange={e => {
                 this.updateSetting('allowUserRegistration', 'allowUserRegistration:enable', e.target.checked)
@@ -113,13 +99,13 @@ class AccountsSettingsContainer extends React.Component {
           }
         />
         <SettingItem
-          title={'Password Complexity'}
-          subtitle={'Require users passwords to meet minimum password complexity'}
-          tooltip={'Minimum 8 characters with uppercase and numeric.'}
+          title={'Сложность пароля'}
+          subtitle={'Требовать от паролей пользователей соответствия минимальной сложности пароля'}
+          tooltip={'Минимум 8 символов, включая заглавные буквы и цифры.'}
           component={
             <EnableSwitch
               stateName={'accountsPasswordComplexity'}
-              label={'Enable'}
+              label={'Включить'}
               checked={this.passwordComplexityEnabled}
               onChange={e => {
                 this.updateSetting('accountsPasswordComplexity', 'accountsPasswordComplexity:enable', e.target.checked)

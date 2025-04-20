@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    1/20/19 4:43 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 const async = require('async')
 const path = require('path')
 const _ = require('lodash')
@@ -26,7 +12,7 @@ installController.content = {}
 
 installController.index = function (req, res) {
   const content = {}
-  content.title = 'Install Trudesk'
+  content.title = 'Установка Trudesk'
   content.layout = false
 
   content.bottom = 'Trudesk v' + pkg.version
@@ -239,7 +225,7 @@ installController.install = function (req, res) {
         TicketStatusSchema.create(
           [
             {
-              name: 'New',
+              name: 'Новый',
               htmlColor: '#29b955',
               uid: 0,
               order: 0,
@@ -248,7 +234,7 @@ installController.install = function (req, res) {
               isLocked: true
             },
             {
-              name: 'Open',
+              name: 'Открыто',
               htmlColor: '#d32f2f',
               uid: 1,
               order: 1,
@@ -257,7 +243,7 @@ installController.install = function (req, res) {
               isLocked: true
             },
             {
-              name: 'Pending',
+              name: 'Ожидание',
               htmlColor: '#2196F3',
               uid: 2,
               order: 2,
@@ -266,7 +252,7 @@ installController.install = function (req, res) {
               isLocked: true
             },
             {
-              name: 'Closed',
+              name: 'Закрыто',
               htmlColor: '#CCCCCC',
               uid: 3,
               order: 3,
@@ -308,7 +294,7 @@ installController.install = function (req, res) {
         })
       },
       function (next) {
-        GroupSchema.create({ name: 'Default Group' }, function (err) {
+        GroupSchema.create({ name: 'По умолчанию' }, function (err) {
           if (err) return next(err)
           return next()
         })
@@ -321,8 +307,8 @@ installController.install = function (req, res) {
             function (done) {
               roleSchema.create(
                 {
-                  name: 'Admin',
-                  description: 'Default role for admins',
+                  name: 'Админ',
+                  description: 'Роль по умолчанию для админов',
                   grants: defaults.roleDefaults.adminGrants
                 },
                 function (err, role) {
@@ -335,8 +321,8 @@ installController.install = function (req, res) {
             function (done) {
               roleSchema.create(
                 {
-                  name: 'Support',
-                  description: 'Default role for agents',
+                  name: 'Поддержка',
+                  description: 'Роль по умолчанию для агентов',
                   grants: defaults.roleDefaults.supportGrants
                 },
                 function (err, role) {
@@ -349,8 +335,8 @@ installController.install = function (req, res) {
             function (done) {
               roleSchema.create(
                 {
-                  name: 'User',
-                  description: 'Default role for users',
+                  name: 'Пользователь',
+                  description: 'Роль по умолчанию для пользователей',
                   grants: defaults.roleDefaults.userGrants
                 },
                 function (err, role) {
@@ -370,7 +356,7 @@ installController.install = function (req, res) {
         const TeamSchema = require('../models/team')
         TeamSchema.create(
           {
-            name: 'Support (Default)',
+            name: 'Поддержка (по умолчанию)',
             members: []
           },
           function (err, team) {
@@ -400,7 +386,7 @@ installController.install = function (req, res) {
             fullname: user.fullname,
             email: user.email,
             role: roleResults.adminRole._id,
-            title: 'Administrator',
+            title: 'Администратор',
             accessToken: chance.hash()
           })
 
@@ -436,7 +422,7 @@ installController.install = function (req, res) {
         const DepartmentSchema = require('../models/department')
         DepartmentSchema.create(
           {
-            name: 'Support - All Groups (Default)',
+            name: 'Поддержка - Все группы (по умолчанию)',
             teams: [defaultTeam._id],
             allGroups: true,
             groups: []

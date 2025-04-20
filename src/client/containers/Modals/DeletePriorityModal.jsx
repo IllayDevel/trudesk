@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/5/19 12:26 AM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -34,7 +20,7 @@ class DeletePriorityModal extends React.Component {
   onSubmit (e) {
     e.preventDefault()
     if (!this.state.selectedPriority) {
-      helpers.UI.showSnackbar('Unable to get new priority. Aborting...', true)
+      helpers.UI.showSnackbar('Не могу получить новые приоритеты. Сброс...', true)
       return true
     }
 
@@ -67,8 +53,8 @@ class DeletePriorityModal extends React.Component {
         <div>
           <form onSubmit={e => this.onSubmit(e)}>
             <div className='uk-margin-medium-bottom uk-clearfix'>
-              <h2>Remove Priority</h2>
-              <span>Please select the priority you wish to reassign tickets to in order to delete this priority</span>
+              <h2>Удаление приоритета</h2>
+              <span>Пожалуйста, выберите приоритет, которому вы хотите переназначить тикеты, чтобы удалить этот приоритет.</span>
               <hr style={{ margin: '10px 0' }} />
             </div>
             <div className='uk-margin-medium-bottom uk-clearfix'>
@@ -85,13 +71,12 @@ class DeletePriorityModal extends React.Component {
             </div>
             <div className='uk-margin-medium-bottom uk-clearfix'>
               <span className='uk-text-danger'>
-                WARNING: This will change all tickets with a priority of: <strong>{priority.get('name')}</strong> to the
-                selected priority above.
+               ВНИМАНИЕ: Это изменит все тикеты с приоритетом: <strong>{priority.get('name')}</strong> на выбранный выше приоритет.
               </span>
             </div>
             <div className='uk-modal-footer uk-text-right'>
-              <Button type={'button'} flat={true} waves={true} text={'Cancel'} extraClass={'uk-modal-close'} />
-              <Button type={'submit'} flat={true} waves={true} text={'Delete'} style={'danger'} />
+              <Button type={'button'} flat={true} waves={true} text={'Отмена'} extraClass={'uk-modal-close'} />
+              <Button type={'submit'} flat={true} waves={true} text={'Удалить'} style={'danger'} />
             </div>
           </form>
         </div>

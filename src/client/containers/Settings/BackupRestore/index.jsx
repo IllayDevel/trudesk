@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/8/19 1:36 AM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -105,11 +91,11 @@ class BackupRestoreSettingsContainer extends React.Component {
         $uploadButton.addClass('hide')
       },
       notallowed: function () {
-        helpers.UI.showSnackbar('Invalid File Type. Please upload a Zip file.', true)
+        helpers.UI.showSnackbar('Неверный тип файла. Загрузите Zip файл.', true)
       },
       error: function (err) {
         Log.error(err)
-        helpers.UI.showSnackbar('An unknown error occurred. Check Console', true)
+        helpers.UI.showSnackbar('Произошла неизвестная ошибка. Проверьте консоль', true)
       },
       progress: function (percent) {
         percent = Math.ceil(percent)
@@ -147,16 +133,15 @@ class BackupRestoreSettingsContainer extends React.Component {
 
     const filename = backup.get('filename')
     UIKit.modal.confirm(
-      `<h2>Are you sure?</h2>
+      `<h2>Вы уверены?</h2>
         <p style="font-size: 15px;">
-            <span class="uk-text-danger" style="font-size: 15px;">This is a permanent action.</span> 
-            This will earse the database and restore it with the selected backup file: <strong>${filename}</strong>
+        <span class="uk-text-danger" style="font-size: 15px;">Это необратимое действие.</span> 
+        База данных будет очищена и восстановлена с помощью выбранного файла резервной копии: <strong>${filename}</strong>
         </p>
         <p style="font-size: 12px;">
-            Any users currently logged in will be presented with a blocking restore page. Preventing any further actions.
-            Once complete all users are required to log in again.</p><br />
+            Любые пользователи, которые в настоящее время вошли в систему, будут видеть страницу блокировки. После завершения все пользователи должны будут войти в систему снова.</p><br />
         <p style="font-size: 12px; font-style: italic;">
-            This process may take a while depending on the size of the backup.
+         Этот процесс может занять некоторое время в зависимости от размера резервной копии.
         </p>`,
       () => {
         this.props.socket.emit(BACKUP_RESTORE_SHOW_OVERLAY)
@@ -164,18 +149,18 @@ class BackupRestoreSettingsContainer extends React.Component {
         axios
           .post('/api/v1/backup/restore', { file: filename })
           .then(() => {
-            helpers.UI.showSnackbar('Restore Complete. Logging all users out...')
+            helpers.UI.showSnackbar('Восстановление завершено. Выход всех пользователей...')
             setTimeout(() => {
               this.props.socket.emit(BACKUP_RESTORE_COMPLETE)
             }, 2000)
           })
           .catch(err => {
             Log.error(err)
-            helpers.UI.showSnackbar('An error occurred. Check console.', true)
+            helpers.UI.showSnackbar('Произошла ошибка. Проверьте консоль..', true)
           })
       },
       {
-        labels: { Ok: 'Yes', Cancel: 'No' },
+        labels: { Ok: 'Да', Cancel: 'Нет' },
         confirmButtonClass: 'md-btn-danger'
       }
     )
@@ -183,8 +168,8 @@ class BackupRestoreSettingsContainer extends React.Component {
 
   onDeleteBackupClicked (e, backup) {
     UIKit.modal.confirm(
-      `<h2 class="text-light">Are you sure?</h2>
-        <p style="font-size: 14px;">This action is permanent and will destroy the backup file: 
+      `<h2 class="text-light">Вы уверены?</h2>
+        <p style="font-size: 14px;">Вы действительно хотите удалить файл: 
             <strong>${backup.get('filename')}</strong>
         </p>`,
       () => {
@@ -193,18 +178,18 @@ class BackupRestoreSettingsContainer extends React.Component {
           .then(res => {
             if (res.data && res.data.success) {
               this.props.fetchBackups()
-              helpers.UI.showSnackbar('Backup successfully deleted')
+              helpers.UI.showSnackbar('Резервная копия удалена')
             } else {
-              helpers.UI.showSnackbar('Unable to delete backup', true)
+              helpers.UI.showSnackbar('Не могу удалить резервную копию', true)
             }
           })
           .catch(err => {
             Log.error(err)
-            helpers.UI.showSnackbar(`Error: ${err.response.data.error}`, true)
+            helpers.UI.showSnackbar(`Ошибка: ${err.response.data.error}`, true)
           })
       },
       {
-        labels: { Ok: 'Yes', Cancel: 'No' },
+        labels: { Ok: 'Да', Cancel: 'Нет' },
         confirmButtonClass: 'md-btn-danger'
       }
     )
@@ -229,8 +214,8 @@ class BackupRestoreSettingsContainer extends React.Component {
       <div className={active ? 'active' : 'hide'}>
         {!this.props.settings.hasMongoDBTools && (
           <SettingItem
-            title={'MongoDB Tools Not Found'}
-            subtitle={'Unable to locate MongoDB tools. Please make sure MongoDB tools are installed.'}
+            title={'MongoDB Tools не найдены'}
+            subtitle={'Не установлены MongoDB tools. Пожалуйста установите необходимые компоненты.'}
           >
             <div>
               <h4>Installing MongoDB Tools</h4>
@@ -263,8 +248,8 @@ class BackupRestoreSettingsContainer extends React.Component {
         {this.props.settings.hasMongoDBTools && (
           <div>
             <SettingItem
-              title={'Backup Now'}
-              subtitle={'Backup all site data. (Database, Attachments, Assets)'}
+              title={'Резервное копирование'}
+              subtitle={'Резервное копирование всех данных сайта. (База данных, вложения, активы)'}
               component={
                 <div className={'uk-float-right mt-10'}>
                   <div
@@ -278,15 +263,15 @@ class BackupRestoreSettingsContainer extends React.Component {
                       className='uk-progress-bar uk-float-right'
                       style={{ width: '115px', fontSize: '11px', textTransform: 'uppercase', lineHeight: '31px' }}
                     >
-                      Please Wait...
+                      Подождите...
                     </div>
                   </div>
                   {!this.props.settings.backingup && (
                     <Button
-                      text={'Backup Now'}
+                      text={'Резервное копирование'}
                       style={'success'}
                       small={true}
-                      styleOverride={{ width: '115px' }}
+                      styleOverride={{ width: '215px' }}
                       onClick={e => this.onBackupNowClicked(e)}
                     />
                   )}
@@ -294,8 +279,8 @@ class BackupRestoreSettingsContainer extends React.Component {
               }
             />
             <SettingItem
-              title={'Backups'}
-              subtitle={'Currently stored backups'}
+              title={'Резервные копии'}
+              subtitle={'Текущие резервные копии'}
               component={
                 <div className={'uk-float-right mt-10'} style={{ width: '85px' }}>
                   <div
@@ -313,7 +298,7 @@ class BackupRestoreSettingsContainer extends React.Component {
                       style={{ width: '85px' }}
                       ref={i => (this.backupUploadBtn = i)}
                     >
-                      Upload
+                      Загрузить
                       <input ref={i => (this.backupUploadSelect = i)} type={'file'} name={'backupUploadSelect'} />
                     </button>
                   </form>
@@ -323,7 +308,7 @@ class BackupRestoreSettingsContainer extends React.Component {
               {this.props.settings.backups.size < 1 && (
                 <Zone>
                   <ZoneBox>
-                    <h2 className={'uk-text-muted uk-text-center'}>No Backups</h2>
+                    <h2 className={'uk-text-muted uk-text-center'}>Нет копий</h2>
                   </ZoneBox>
                 </Zone>
               )}
@@ -331,8 +316,8 @@ class BackupRestoreSettingsContainer extends React.Component {
                 <table className='uk-table mt-0'>
                   <thead>
                     <tr>
-                      <th>Filename</th>
-                      <th>Size</th>
+                      <th>Имя файла</th>
+                      <th>Размер</th>
                       <th />
                     </tr>
                   </thead>
@@ -351,16 +336,16 @@ class BackupRestoreSettingsContainer extends React.Component {
                                 className={'md-btn md-btn-small md-btn-wave no-ajaxy'}
                                 download={backup.get('filename')}
                               >
-                                download
+                                Скачать
                               </a>
                               <Button
-                                text={'Restore'}
+                                text={'Восстановить'}
                                 small={true}
                                 waves={true}
                                 onClick={e => this.oneRestoreClicked(e, backup)}
                               />
                               <Button
-                                text={'Delete'}
+                                text={'Удалить'}
                                 small={true}
                                 style={'danger'}
                                 waves={true}
@@ -377,11 +362,11 @@ class BackupRestoreSettingsContainer extends React.Component {
             </SettingItem>
           </div>
         )}
-        <SettingItem title={'Deleted Tickets'} subtitle={'Tickets marked as deleted are shown below.'}>
+        <SettingItem title={'Удаленные задачи'} subtitle={'Задачи, отмеченные как удаленные.'}>
           {this.props.settings.deletedTickets.size < 1 && (
             <Zone>
               <ZoneBox>
-                <h2 className='uk-text-muted uk-text-center'>No Deleted Tickets</h2>
+                <h2 className='uk-text-muted uk-text-center'>Нет удаленных задач</h2>
               </ZoneBox>
             </Zone>
           )}
@@ -391,9 +376,9 @@ class BackupRestoreSettingsContainer extends React.Component {
                 <thead>
                   <tr>
                     <th>UID</th>
-                    <th>Subject</th>
-                    <th>Group</th>
-                    <th>Date</th>
+                    <th>Тема</th>
+                    <th>Группа</th>
+                    <th>Дата</th>
                     <th />
                   </tr>
                 </thead>
@@ -416,14 +401,14 @@ class BackupRestoreSettingsContainer extends React.Component {
                         <td className='uk-text-right valign-middle'>
                           <ButtonGroup>
                             <Button
-                              text={'Delete'}
+                              text={'Удалить'}
                               style={'danger'}
                               small={true}
                               waves={true}
                               onClick={e => this.onDeleteTicketClicked(e, ticket)}
                             />
                             <Button
-                              text={'Restore'}
+                              text={'Восстановить'}
                               small={true}
                               waves={true}
                               onClick={e => this.onRestoreTicketClicked(e, ticket)}

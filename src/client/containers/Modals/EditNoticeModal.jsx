@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/18/22 10:06 PM
- *  Copyright (c) 2014-2022. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -80,11 +66,11 @@ class EditNoticeModal extends React.Component {
     return (
       <BaseModal {...this.props} options={{ bgclose: false }}>
         <div className={'mb-25'}>
-          <h2>Edit Notice</h2>
+          <h2>Редактирование уведомления</h2>
         </div>
         <form className={'uk-form-stacked'} onSubmit={e => this.onFormSubmit(e)}>
           <div className={'uk-margin-medium-bottom'}>
-            <label>Name</label>
+            <label>Имя</label>
             <input
               type='text'
               className={'md-input'}
@@ -96,7 +82,7 @@ class EditNoticeModal extends React.Component {
             />
           </div>
           <div className={'uk-margin-medium-bottom'}>
-            <label>Message</label>
+            <label>Сообщение</label>
             <textarea
               className={'md-input'}
               value={this.message}
@@ -107,7 +93,7 @@ class EditNoticeModal extends React.Component {
             />
           </div>
           <div>
-            <span style={{ display: 'inline-block', float: 'left', paddingTop: 5 }}>Background Color</span>
+            <span style={{ display: 'inline-block', float: 'left', paddingTop: 5 }}>Цвет фона</span>
             <PopoverColorPicker
               color={this.color}
               onChange={c => {
@@ -115,7 +101,7 @@ class EditNoticeModal extends React.Component {
               }}
               style={{ float: 'left', marginLeft: 5, marginRight: 15 }}
             />
-            <span style={{ display: 'inline-block', float: 'left', paddingTop: 5 }}>Font Color</span>
+            <span style={{ display: 'inline-block', float: 'left', paddingTop: 5 }}>Цвет шрифта</span>
             <PopoverColorPicker
               color={this.fontColor}
               onChange={c => {
@@ -126,8 +112,8 @@ class EditNoticeModal extends React.Component {
           </div>
 
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Close'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Save Notice'} flat={true} waves={true} style={'primary'} type={'submit'} />
+            <Button text={'Закрыть'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Сохранить уведомление'} flat={true} waves={true} style={'primary'} type={'submit'} />
           </div>
         </form>
       </BaseModal>

@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/7/19 1:41 AM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -147,17 +133,17 @@ class Mailer_MailerCheck extends React.Component {
       })
       .then(() => {
         UIKit.modal.confirm(
-          'Setting will take affect after server restart. <br /><br />Would you like to restart the server now?',
+          'Настройки вступят в силу после перезапуска сервера. <br /><br />Хотите перезапустить сервер сейчас?',
           () => {
             axios.get('/api/v1/admin/restart').catch(error => {
               helpers.hideLoader()
               Log.error(error.response)
-              Log.error('Unable to restart server. Server must run under PM2 and Account must have admin rights.')
-              helpers.UI.showSnackbar('Unable to restart server. Are you an Administrator?', true)
+              Log.error('Невозможно перезапустить сервер. Сервер должен работать под PM2, а учетная запись должна иметь права администратора..')
+              helpers.UI.showSnackbar('Невозможно перезапустить сервер. Вы администратор?', true)
             })
           },
           {
-            labels: { Ok: 'Yes', Cancel: 'No' },
+            labels: { Ok: 'Да', Cancel: 'Нет' },
             confirmButtonClass: 'md-btn-primary'
           }
         )
@@ -199,7 +185,7 @@ class Mailer_MailerCheck extends React.Component {
     axios
       .get(`/api/v2/mailer/check`)
       .then(function (res) {
-        if (res.data && res.data.success) helpers.UI.showSnackbar('Fetch mail task scheduled.')
+        if (res.data && res.data.success) helpers.UI.showSnackbar('Запланирована задача получения почты.')
       })
       .catch(function (err) {
         Log.error(err)
@@ -213,16 +199,16 @@ class Mailer_MailerCheck extends React.Component {
     })
     return (
       <SettingItem
-        title={'Mailer Check'}
+        title={'Проверка почты'}
         subtitle={
           <div>
-            Poll an IMAP mailbox for messages to convert to tickets - <i>Settings are applied after server restart</i>
+            Опросить почтовый ящик IMAP на предмет сообщений для преобразования в задачи - <i>Настройки применяются после перезапуска сервера</i>
           </div>
         }
         component={
           <EnableSwitch
             stateName={'mailerCheckEnabled'}
-            label={'Enabled'}
+            label={'Включить'}
             checked={this.getSetting('mailerCheckEnabled')}
             onChange={e => this.onEnableMailerCheckChanged(e)}
           />
@@ -231,7 +217,7 @@ class Mailer_MailerCheck extends React.Component {
         <div>
           <form onSubmit={e => this.onFormSubmit(e)}>
             <div className='uk-margin-medium-bottom'>
-              <label>Mail Server</label>
+              <label>Почтовый сервер</label>
               <input
                 type='text'
                 className={'md-input md-input-width-medium'}
@@ -242,7 +228,7 @@ class Mailer_MailerCheck extends React.Component {
               />
             </div>
             <div className='uk-margin-medium-bottom'>
-              <label>Port</label>
+              <label>Порт</label>
               <input
                 type='text'
                 className={'md-input md-input-width-medium'}
@@ -253,7 +239,7 @@ class Mailer_MailerCheck extends React.Component {
               />
             </div>
             <div className='uk-margin-medium-bottom'>
-              <label>Username</label>
+              <label>Пользователь</label>
               <input
                 type='text'
                 className={'md-input md-input-width-medium'}
@@ -264,7 +250,7 @@ class Mailer_MailerCheck extends React.Component {
               />
             </div>
             <div className='uk-margin-medium-bottom'>
-              <label>Password</label>
+              <label>Пароль</label>
               <input
                 type='password'
                 className={'md-input md-input-width-medium'}
@@ -277,18 +263,18 @@ class Mailer_MailerCheck extends React.Component {
             <div className='uk-clearfix uk-margin-medium-bottom'>
               <div className='uk-float-left'>
                 <h6 style={{ padding: 0, margin: '5px 0 0 0', fontSize: '16px', lineHeight: '14px' }}>
-                  Allow Self Signed Certificate
+                 Разрешить самоподписанный сертификат
                 </h6>
                 <h5
                   style={{ padding: '0 0 10px 0', margin: '2px 0 0 0', fontSize: '12px' }}
                   className={'uk-text-muted'}
                 >
-                  Allow less secure self signed certificates when checking mailbox.
+                 Разрешить использовать менее безопасные самоподписанные сертификаты при проверке почтового ящика.
                 </h5>
               </div>
               <div className='uk-float-right'>
                 <EnableSwitch
-                  label={'Enable'}
+                  label={'Включить'}
                   stateName={'mailerCheckSelfSign'}
                   checked={this.state.mailerCheckSelfSign}
                   onChange={e => this.onCheckboxChanged(e, 'mailerCheckSelfSign')}
@@ -300,7 +286,7 @@ class Mailer_MailerCheck extends React.Component {
             <div className='uk-clearfix uk-margin-medium-bottom'>
               <div className='uk-float-left'>
                 <h6 style={{ padding: 0, margin: '5px 0 0 0', fontSize: '16px', lineHeight: '14px' }}>
-                  Polling Interval
+                   Интервал опроса
                   <i
                     className={'material-icons'}
                     style={{
@@ -311,7 +297,7 @@ class Mailer_MailerCheck extends React.Component {
                       marginLeft: '5px'
                     }}
                     data-uk-tooltip="{cls:'long-text'}"
-                    title={'Caution: Polling too often can cause high CPU usage'}
+                    title={'Внимание: слишком частый опрос может привести к высокой загрузке ЦП.'}
                   >
                     error
                   </i>
@@ -320,7 +306,7 @@ class Mailer_MailerCheck extends React.Component {
                   style={{ padding: '0 0 10px 0', margin: '2px 0 0 0', fontSize: '12px' }}
                   className={'uk-text-muted'}
                 >
-                  How often to poll the server for new messages (Minutes)
+                  Как часто опрашивать сервер на наличие новых сообщений (в минутах)
                 </h5>
               </div>
               <div className='uk-float-right' style={{ position: 'relative' }}>
@@ -340,18 +326,18 @@ class Mailer_MailerCheck extends React.Component {
             <div className='uk-clearfix uk-margin-medium-bottom'>
               <div className='uk-float-left'>
                 <h6 style={{ padding: 0, margin: '5px 0 0 0', fontSize: '16px', lineHeight: '14px' }}>
-                  Create Account
+                  Создать аккаунт
                 </h6>
                 <h5
                   style={{ padding: '0 0 10px 0', margin: '2px 0 0 0', fontSize: '12px' }}
                   className={'uk-text-muted'}
                 >
-                  Create a user account if account does not exist.
+                 Создайте учетную запись пользователя, если учетная запись не существует.
                 </h5>
               </div>
               <div className='uk-float-right'>
                 <EnableSwitch
-                  label={'Enable'}
+                  label={'Включить'}
                   stateName={'mailerCheckCreateAccount'}
                   checked={this.state.mailerCheckCreateAccount}
                   onChange={e => this.onCheckboxChanged(e, 'mailerCheckCreateAccount')}
@@ -363,18 +349,18 @@ class Mailer_MailerCheck extends React.Component {
             <div className='uk-clearfix uk-margin-medium-bottom'>
               <div className='uk-float-left'>
                 <h6 style={{ padding: 0, margin: '5px 0 0 0', fontSize: '16px', lineHeight: '14px' }}>
-                  Delete Message
+                  Удалить сообщение
                 </h6>
                 <h5
                   style={{ padding: '0 0 10px 0', margin: '2px 0 0 0', fontSize: '12px' }}
                   className={'uk-text-muted'}
                 >
-                  Delete email message from INBOX once processed
+                  Удалить сообщение из ВХОДЯЩИХ после обработки
                 </h5>
               </div>
               <div className='uk-float-right'>
                 <EnableSwitch
-                  label={'Enable'}
+                  label={'Включить'}
                   stateName={'mailerCheckDeleteMessage'}
                   checked={this.state.mailerCheckDeleteMessage}
                   onChange={e => this.onCheckboxChanged(e, 'mailerCheckDeleteMessage')}
@@ -384,7 +370,7 @@ class Mailer_MailerCheck extends React.Component {
               <hr style={{ float: 'left', marginTop: '10px' }} />
             </div>
             <div className='uk-margin-medium-bottom uk-clearfix'>
-              <label>Default Ticket Type</label>
+              <label>Тип задачи по умолчанию</label>
               <SingleSelect
                 showTextbox={false}
                 width={'100%'}
@@ -395,7 +381,7 @@ class Mailer_MailerCheck extends React.Component {
               />
             </div>
             <div className='uk-margin-medium-bottom uk-clearfix'>
-              <label>Default Ticket Priority</label>
+              <label>Приоритет задачи по умолчанию</label>
               <SingleSelect
                 showTextbox={false}
                 width={'100%'}
@@ -407,7 +393,7 @@ class Mailer_MailerCheck extends React.Component {
             </div>
             <div className='uk-clearfix'>
               <Button
-                text={'Check Now'}
+                text={'Проверить сейчас'}
                 type={'button'}
                 extraClass={'uk-float-left'}
                 flat={true}
@@ -417,7 +403,7 @@ class Mailer_MailerCheck extends React.Component {
                 disabled={!this.getSetting('mailerCheckEnabled')}
               />
               <Button
-                text={'Apply'}
+                text={'Применить'}
                 type={'submit'}
                 extraClass={'uk-float-right'}
                 flat={true}

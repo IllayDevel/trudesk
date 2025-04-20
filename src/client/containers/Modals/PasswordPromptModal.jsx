@@ -30,7 +30,7 @@ class PasswordPromptModal extends React.Component {
         if (this.props.onVerifyComplete) this.props.onVerifyComplete(true)
       })
       .catch(error => {
-        let errMessage = 'An Error has occurred.'
+        let errMessage = 'Произошла ошибка.'
         if (error.response && error.response.data && error.response.data.error) errMessage = error.response.data.error
 
         helpers.UI.showSnackbar(errMessage, true)
@@ -44,17 +44,17 @@ class PasswordPromptModal extends React.Component {
     return (
       <BaseModal options={{ bgclose: false }}>
         <div>
-          <h2>{titleOverride || 'Confirm Password'}</h2>
-          <p>{textOverride || 'Please confirm your password.'}</p>
+          <h2>{titleOverride || 'Подтвердите пароль'}</h2>
+          <p>{textOverride || 'Пожалуйста, подтвердите свой пароль.'}</p>
         </div>
         <div className={'uk-margin-medium-bottom'}>
-          <label>Current Password</label>
+          <label>Текущий пароль</label>
           <Input name={'current-password'} type={'password'} onChange={val => (this.confirmPassword = val)} />
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button text={'Cancel'} small={true} flat={true} waves={false} onClick={() => this.props.hideModal()} />
+          <Button text={'Отмена'} small={true} flat={true} waves={false} onClick={() => this.props.hideModal()} />
           <Button
-            text={'Verify Password'}
+            text={'Подтвердить пароль'}
             style={'primary'}
             small={true}
             waves={true}

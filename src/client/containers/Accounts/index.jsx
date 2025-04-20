@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/22/19 11:18 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -116,14 +102,14 @@ class AccountsContainer extends React.Component {
       this.props.accountsState.accounts &&
       this.props.accountsState.accounts.map(user => {
         const userImage = user.get('image') || 'defaultProfile.jpg'
-        let actionMenu = [<DropdownItem key={0} text={'Edit'} onClick={e => this.onEditAccountClicked(e, user)} />]
+        let actionMenu = [<DropdownItem key={0} text={'Редактировать'} onClick={e => this.onEditAccountClicked(e, user)} />]
         if (user.get('deleted'))
-          actionMenu.push(<DropdownItem key={2} text={'Enable'} onClick={e => this.onEnableAccountClicked(e, user)} />)
+          actionMenu.push(<DropdownItem key={2} text={'Включить'} onClick={e => this.onEnableAccountClicked(e, user)} />)
         else
           actionMenu.push(
             <DropdownItem
               key={1}
-              text={'Delete'}
+              text={'Удалить'}
               extraClass={'uk-text-danger'}
               onClick={e => this.onDeleteAccountClicked(e, user)}
             />
@@ -165,7 +151,7 @@ class AccountsContainer extends React.Component {
                 <ul className='tru-list'>
                   <li>
                     <div className='tru-list-content'>
-                      <span className='tru-list-heading'>Role</span>
+                      <span className='tru-list-heading'>Роль</span>
                       <span className='uk-text-small uk-text-muted'>{user.getIn(['role', 'name'])}</span>
                     </div>
                   </li>
@@ -180,7 +166,7 @@ class AccountsContainer extends React.Component {
                   <li>
                     {customer && user.get('groups') && (
                       <div className='tru-list-content'>
-                        <span className='tru-list-heading'>Groups</span>
+                        <span className='tru-list-heading'>Группы</span>
                         <span className='uk-text-small uk-text-muted uk-text-truncate'>
                           {user.get('groups').map(group => {
                             return group.get('name') + (user.get('groups').toArray().length > 1 ? ', ' : '')
@@ -190,7 +176,7 @@ class AccountsContainer extends React.Component {
                     )}
                     {!customer && user.get('teams') && (
                       <div className='tru-list-content'>
-                        <span className='tru-list-heading'>Teams</span>
+                        <span className='tru-list-heading'>Команды</span>
                         <span className='uk-text-small uk-text-muted uk-text-truncate'>
                           {user.get('teams').map(team => {
                             return team.get('name') + (user.get('teams').toArray().length > 1 ? ', ' : '')
@@ -202,7 +188,7 @@ class AccountsContainer extends React.Component {
                   {!customer && user.get('departments') && (
                     <li>
                       <div className='tru-list-content'>
-                        <span className='tru-list-heading'>Departments</span>
+                        <span className='tru-list-heading'>Отделы</span>
                         <span className='uk-text-small uk-text-muted uk-text-truncate'>
                           {user.get('departments').map(department => {
                             return department.get('name') + (user.get('departments').toArray().length > 1 ? ', ' : '')
@@ -234,7 +220,7 @@ class AccountsContainer extends React.Component {
               <div className={'uk-width-1-4 mt-15 pr-20 uk-clearfix'}>
                 <ButtonGroup classNames={'uk-clearfix uk-float-right'}>
                   <Button
-                    text={'Create'}
+                    text={'Создать'}
                     hasDropdown={false}
                     flat={false}
                     small={true}
@@ -300,7 +286,7 @@ AccountsContainer.propTypes = {
 }
 
 AccountsContainer.defaultProps = {
-  title: 'Accounts',
+  title: 'Пользователи',
   view: 'customers'
 }
 

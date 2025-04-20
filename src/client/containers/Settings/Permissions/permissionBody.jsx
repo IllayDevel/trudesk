@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/15/19 6:05 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -109,21 +95,21 @@ class PermissionBody extends React.Component {
 
   static mapTicketSpecials () {
     return [
-      { title: 'Print', perm: 'print' },
-      { title: 'Notes', perm: 'notes' },
-      { title: 'Manage Public Tickets', perm: 'public' },
-      { title: 'Can View All Tickets in Assigned Groups', perm: 'viewall' }
+      { title: 'Печать', perm: 'print' },
+      { title: 'Заметки', perm: 'notes' },
+      { title: 'Управление публичными задачами', perm: 'public' },
+      { title: 'Можно просматривать все задачи в назначенных группах', perm: 'viewall' }
     ]
   }
 
   static mapAccountSpecials () {
-    return [{ title: 'Import', perm: 'import' }]
+    return [{ title: 'Импорт', perm: 'import' }]
   }
 
   static mapNoticeSpecials () {
     return [
-      { title: 'Activate', perm: 'activate' },
-      { title: 'Deactivate', perm: 'deactivate' }
+      { title: 'Активировать', perm: 'activate' },
+      { title: 'Деактивировать', perm: 'deactivate' }
     ]
   }
 
@@ -174,38 +160,38 @@ class PermissionBody extends React.Component {
       <div>
         <form onSubmit={e => this.onSubmit(e)}>
           <SettingItem
-            title={'Admin'}
-            tooltip={'Role is considered an admin. Enabling management of the trudesk instance.'}
-            subtitle={'Is this role defined as an admin role?'}
+            title={'Администратор'}
+            tooltip={'Роль администратора trudesk.'}
+            subtitle={'Определена ли эта роль как роль администратора?'}
             component={
               <EnableSwitch
                 stateName={'isAdmin_' + this.props.role.get('_id')}
-                label={'Enable'}
+                label={'Включить'}
                 checked={this.isAdmin}
                 onChange={e => this.onEnableSwitchChanged(e, 'isAdmin')}
               />
             }
           />
           <SettingItem
-            title={'Support Agent'}
-            subtitle={'Is this role defined as an agent role?'}
-            tooltip={'Role is considered an agent role. Enabling agent views and displaying in agent lists.'}
+            title={'Агент'}
+            subtitle={'Определена ли эта роль как роль агента?'}
+            tooltip={'Роль считается ролью агента.'}
             component={
               <EnableSwitch
                 stateName={'isAgent_' + this.props.role.get('_id')}
-                label={'Enable'}
+                label={'Включить'}
                 checked={this.isAgent}
                 onChange={e => this.onEnableSwitchChanged(e, 'isAgent')}
               />
             }
           />
           <SettingItem
-            title={'Enable Hierarchy'}
-            subtitle={'Allow this role to manage resources owned by roles defined under it.'}
+            title={'Включить иерархию'}
+            subtitle={'Включение этого пункта включает иерархическое наложение ролей.'}
             component={
               <EnableSwitch
                 stateName={'hasHierarchy_' + this.props.role.get('_id')}
-                label={'Enable'}
+                label={'Включить'}
                 checked={this.hasHierarchy}
                 onChange={e => this.onEnableSwitchChanged(e, 'hasHierarchy')}
               />
@@ -213,74 +199,74 @@ class PermissionBody extends React.Component {
           />
           <PermissionGroupPartial
             ref={i => (this.ticketPermGroup = i)}
-            title={'Tickets'}
+            title={'Задачи'}
             role={this.props.role}
             grants={this.ticketGrants}
             roleSpecials={PermissionBody.mapTicketSpecials()}
-            subtitle={'Ticket Permissions'}
+            subtitle={'Права для задач'}
           />
           <PermissionGroupPartial
             ref={i => (this.commentPermGroup = i)}
-            title={'Comments'}
+            title={'Комментарии'}
             role={this.props.role}
             grants={this.commentGrants}
-            subtitle={'Ticket Comments Permissions'}
+            subtitle={'Права для комментариев'}
           />
           <PermissionGroupPartial
             ref={i => (this.accountPermGroup = i)}
-            title={'Accounts'}
+            title={'Пользователи'}
             role={this.props.role}
             roleSpecials={PermissionBody.mapAccountSpecials()}
             grants={this.accountGrants}
-            subtitle={'Account Permissions'}
+            subtitle={'Права на пользователей'}
           />
           <PermissionGroupPartial
             ref={i => (this.groupPermGroup = i)}
-            title={'Groups'}
+            title={'Группы'}
             role={this.props.role}
             grants={this.groupGrants}
-            subtitle={'Group Permissions'}
+            subtitle={'Права на группы'}
           />
           <PermissionGroupPartial
             ref={i => (this.teamPermGroup = i)}
-            title={'Teams'}
+            title={'Команды'}
             role={this.props.role}
             grants={this.teamGrants}
-            subtitle={'Team Permissions'}
+            subtitle={'Парва на команды'}
           />
           <PermissionGroupPartial
             ref={i => (this.departmentPermGroup = i)}
-            title={'Departments'}
+            title={'Отделы'}
             role={this.props.role}
             grants={this.departmentGrants}
-            subtitle={'Department Permissions'}
+            subtitle={'Права на отделы'}
           />
           <PermissionGroupPartial
             ref={i => (this.reportPermGroup = i)}
-            title={'Reports'}
+            title={'Отчеты'}
             role={this.props.role}
             grants={this.reportGrants}
-            subtitle={'Report Permissions'}
+            subtitle={'Права на отчеты'}
           />
           <PermissionGroupPartial
             ref={i => (this.noticePermGroup = i)}
-            title={'Notices'}
+            title={'Заметки'}
             role={this.props.role}
             grants={this.noticeGrants}
             roleSpecials={PermissionBody.mapNoticeSpecials()}
-            subtitle={'Notice Permissions'}
+            subtitle={'Права на заметки'}
           />
           <div className={'uk-margin-large-bottom'}>
-            <h2 className='text-light'>Danger Zone</h2>
+            <h2 className='text-light'>Опасная зона</h2>
             <div className='danger-zone'>
               <div className='dz-box uk-clearfix'>
                 <div className='uk-float-left'>
-                  <h5>Delete this permission role?</h5>
-                  <p>Once you delete a permission role, there is no going back. Please be certain.</p>
+                  <h5>Удалить эту роль?</h5>
+                  <p>После удаления роли разрешения пути назад уже не будет!</p>
                 </div>
                 <div className='uk-float-right' style={{ paddingTop: '10px' }}>
                   <Button
-                    text={'Delete'}
+                    text={'Удалить'}
                     small={true}
                     style={'danger'}
                     onClick={e => this.showDeletePermissionRole(e)}
@@ -293,7 +279,7 @@ class PermissionBody extends React.Component {
           <div>
             <div className='box uk-clearfix'>
               <div className='uk-float-right' style={{ paddingTop: '10px' }}>
-                <Button type={'submit'} style={'success'} waves={true} text={'Save Permissions'} />
+                <Button type={'submit'} style={'success'} waves={true} text={'Сохранить'} />
               </div>
             </div>
           </div>

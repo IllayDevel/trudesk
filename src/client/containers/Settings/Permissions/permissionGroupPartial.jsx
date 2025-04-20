@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/15/19 8:55 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeObservable, observable } from 'mobx'
@@ -119,32 +105,32 @@ class PermissionGroupPartial extends React.Component {
           component={
             <EnableSwitch
               stateName={`all_perm_${title}_${role.get('_id')}`}
-              label={'All'}
+              label={'Все'}
               checked={this.all}
               onChange={e => this.onEnableSwitchChanged(e, 'all')}
             />
           }
         >
           <PermSwitchPartial
-            title={'Create'}
+            title={'Создание'}
             checked={this.create}
             onChange={e => this.onEnableSwitchChanged(e, 'create')}
             disabled={this.all}
           />
           <PermSwitchPartial
-            title={'View'}
+            title={'Просмотр'}
             onChange={e => this.onEnableSwitchChanged(e, 'view')}
             checked={this.view}
             disabled={this.all}
           />
           <PermSwitchPartial
-            title={'Update'}
+            title={'Обновление'}
             onChange={e => this.onEnableSwitchChanged(e, 'update')}
             checked={this.update}
             disabled={this.all}
           />
           <PermSwitchPartial
-            title={'Delete'}
+            title={'Удаление'}
             onChange={e => this.onEnableSwitchChanged(e, 'delete')}
             checked={this.delete}
             disabled={this.all}
@@ -160,7 +146,7 @@ class PermissionGroupPartial extends React.Component {
                       className='text-dark'
                       style={{ padding: '0 0 0 15px', margin: '20px 0', fontSize: '18px', lineHeight: '14px' }}
                     >
-                      Special Permissions
+                      Специальные права
                     </h6>
                   </div>
                 </div>

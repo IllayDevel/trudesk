@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    6/20/23 6:00 PM
- *  Copyright (c) 2014-2023. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -62,7 +48,7 @@ class TicketStatusBody extends React.Component {
     api.tickets
       .updateStatus({ id, name, htmlColor, isResolved, slatimer })
       .then(res => {
-        helpers.UI.showSnackbar('Status updated')
+        helpers.UI.showSnackbar('Статус обновлен')
         this.props.fetchSettings()
       })
       .catch(e => {
@@ -80,14 +66,14 @@ class TicketStatusBody extends React.Component {
       <div>
         <form>
           <div className={'ticket-status-general-wrapper'}>
-            <h2 className='text-light'>General</h2>
+            <h2 className='text-light'>Главная</h2>
             <hr style={{ margin: '5px 0 25px 0' }} />
             <div style={{ marginBottom: 15 }}>
-              <label style={{ display: 'inline-block', cursor: 'pointer' }}>Status Name</label>
+              <label style={{ display: 'inline-block', cursor: 'pointer' }}>Наименование</label>
               <Input defaultValue={this.statusName} onChange={v => (this.statusName = v)} />
             </div>
             <div style={{ marginBottom: 15 }}>
-              <label style={{ display: 'inline-block', cursor: 'pointer' }}>Status Color</label>
+              <label style={{ display: 'inline-block', cursor: 'pointer' }}>Цвет статуса</label>
               <ColorSelector
                 showLabel={false}
                 hideRevert={true}
@@ -96,32 +82,32 @@ class TicketStatusBody extends React.Component {
               />
             </div>
           </div>
-          <h2 className='text-light mt-25'>Properties</h2>
+          <h2 className='text-light mt-25'>Свойства</h2>
           <hr style={{ margin: '5px 0 25px 0' }} />
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
             <h4 className={'uk-width-1-2'} style={{ flexGrow: 1 }}>
-              SLA Timer
+              Таймер SLA
             </h4>
             <EnableSwitch
               stateName={`slatimer_${this.props.status.get('_id')}`}
-              label={'Yes'}
+              label={'Да'}
               checked={this.slatimer}
               onChange={e => (this.slatimer = e.target.checked)}
             />
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
             <h4 className={'uk-width-1-2'} style={{ flexGrow: 1 }}>
-              Is Resolved
+             Решение
             </h4>
             <EnableSwitch
               stateName={`isResolved_${this.props.status.get('_id')}`}
-              label={'Yes'}
+              label={'Да'}
               checked={this.isResolved}
               onChange={e => (this.isResolved = e.target.checked)}
             />
           </div>
           <div className={'uk-margin-large-top'} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button text={'Save Status'} style={'success'} onClick={e => this.onSaveClicked(e)} />
+            <Button text={'Сохранить статус'} style={'success'} onClick={e => this.onSaveClicked(e)} />
           </div>
         </form>
         {!this.props.status.get('isLocked') && (
@@ -132,12 +118,12 @@ class TicketStatusBody extends React.Component {
               <div className='danger-zone'>
                 <div className='dz-box uk-clearfix'>
                   <div className='uk-float-left'>
-                    <h5>Delete this status</h5>
-                    <p>Once you delete a ticket status, there is no going back. Please be certain.</p>
+                    <h5>Удалить этот статус</h5>
+                    <p>Удаления статуса не возможно отменить!</p>
                   </div>
                   <div className='uk-float-right' style={{ paddingTop: '10px' }}>
                     <Button
-                      text={'Delete'}
+                      text={'Удалить'}
                       small={true}
                       style={'danger'}
                       onClick={e => this.showDeleteTicketStatusModal(e, this.props.status)}

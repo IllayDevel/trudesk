@@ -44,7 +44,7 @@ class ReportsContainer extends React.Component {
   render () {
     return (
       <>
-        <PageTitle title={'Generate Report'} />
+        <PageTitle title={'Сформировать'} />
         <Grid>
           <GridItem width={'1-4'} extraClass={'full-height'}>
             <TruCard
@@ -53,7 +53,7 @@ class ReportsContainer extends React.Component {
               extraContentClass={'nopadding'}
               content={
                 <div>
-                  <h6 style={{ padding: '15px 30px', margin: 0, fontSize: '14px' }}>Select Report</h6>
+                  <h6 style={{ padding: '15px 30px', margin: 0, fontSize: '14px' }}>Выберите отчет</h6>
                   <hr className={'nomargin'} />
                   <div style={{ padding: '15px 30px' }}>
                     <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
@@ -63,7 +63,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_groups')}
                         >
-                          Tickets by Groups
+                         Задачи по группам
                         </a>
                       </li>
                       <li>
@@ -72,7 +72,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_priorities')}
                         >
-                          Tickets by Priorities
+                          Задачи по приоритетам
                         </a>
                       </li>
                       <li>
@@ -81,7 +81,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_status')}
                         >
-                          Tickets by Status
+                          Задачи по статусам
                         </a>
                       </li>
                       <li>
@@ -90,7 +90,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_tags')}
                         >
-                          Tickets by Tags
+                          Задачи по тэгам
                         </a>
                       </li>
                       <li>
@@ -99,7 +99,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_types')}
                         >
-                          Tickets by Types
+                          Задачи по типам
                         </a>
                       </li>
                       <li>
@@ -108,7 +108,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_assignee')}
                         >
-                          Tickets by Assignee
+                          Задачи по ответственным
                         </a>
                       </li>
                     </ul>
@@ -122,7 +122,7 @@ class ReportsContainer extends React.Component {
               <div>
                 {!this.selectedReport && (
                   <h3 className={'uk-text-muted'} style={{ fontWeight: 300, opacity: 0.7 }}>
-                    Please select a report type
+                    Выберите тип отчета
                   </h3>
                 )}
                 {this.selectedReport === 'tickets_by_groups' && <ReportTicketByGroups />}

@@ -87,7 +87,7 @@ accountsController.getCustomers = function (req, res) {
   }
 
   const content = {}
-  content.title = 'Customers'
+  content.title = 'Пользователи'
   content.nav = 'accounts'
   content.subnav = 'accounts-customers'
 
@@ -106,7 +106,7 @@ accountsController.getAgents = function (req, res) {
   }
 
   const content = {}
-  content.title = 'Agents'
+  content.title = 'Агенты'
   content.nav = 'accounts'
   content.subnav = 'accounts-agents'
 
@@ -125,7 +125,7 @@ accountsController.getAdmins = function (req, res) {
   }
 
   const content = {}
-  content.title = 'Admins'
+  content.title = 'Администраторы'
   content.nav = 'accounts'
   content.subnav = 'accounts-admins'
 
@@ -144,7 +144,7 @@ accountsController.importPage = function (req, res) {
   }
 
   const content = {}
-  content.title = 'Accounts - Import'
+  content.title = 'Пользователи - импорт'
   content.nav = 'accounts'
 
   content.data = {}
@@ -158,13 +158,13 @@ accountsController.profile = function (req, res) {
   const user = req.user
   const backUrl = req.header('Referer') || '/'
   if (_.isUndefined(user)) {
-    req.flash('message', 'Permission Denied.')
+    req.flash('message', 'Недостаточно прав.')
     winston.warn('Undefined User - /Profile')
     return res.redirect(backUrl)
   }
 
   const content = {}
-  content.title = 'Profile'
+  content.title = 'Профиль'
   content.nav = 'profile'
 
   content.data = {}

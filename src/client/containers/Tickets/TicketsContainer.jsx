@@ -1,16 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Updated:    6/9/19 9:44 PM
- *  Copyright (c) 2014-2019 Trudesk, Inc. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -135,16 +122,16 @@ class TicketsContainer extends React.Component {
       .put(`/api/v2/tickets/batch`, { batch })
       .then(res => {
         if (res.data.success) {
-          helpers.UI.showSnackbar({ text: `Ticket status set to ${status.get('name')}` })
+          helpers.UI.showSnackbar({ text: `Задача начначена ${status.get('name')}` })
           this._clearChecked()
         } else {
-          helpers.UI.showSnackbar('An unknown error occurred.', true)
+          helpers.UI.showSnackbar('Неизвестная ошибка.', true)
           Log.error(res.data.error)
         }
       })
       .catch(error => {
         Log.error(error)
-        helpers.UI.showSnackbar('An Error occurred. Please check console.', true)
+        helpers.UI.showSnackbar('Неизвестная ошибка. Проверьте консоль.', true)
       })
   }
 
@@ -244,7 +231,7 @@ class TicketsContainer extends React.Component {
     return (
       <div>
         <PageTitle
-          title={'Tickets'}
+          title={'Задачи'}
           shadow={false}
           rightComponent={
             <div>
@@ -278,19 +265,19 @@ class TicketsContainer extends React.Component {
                 />
                 <DropdownTrigger pos={'bottom-right'} offset={5} extraClass={'uk-float-left'}>
                   <PageTitleButton fontAwesomeIcon={'fa-tasks'} />
-                  <Dropdown small={true} width={120}>
-                    <DropdownItem text={'Create'} onClick={() => this.props.showModal('CREATE_TICKET')} />
+                  <Dropdown small={true} width={210}>
+                    <DropdownItem text={'Создать'} onClick={() => this.props.showModal('CREATE_TICKET')} />
                     <DropdownSeparator />
                     {this.props.ticketStatuses.map(s => (
                       <DropdownItem
                         key={s.get('_id')}
-                        text={'Set ' + s.get('name')}
+                        text={'Установить статус ' + s.get('name')}
                         onClick={() => this.onSetStatus(s)}
                       />
                     ))}
                     {helpers.canUser('tickets:delete', true) && <DropdownSeparator />}
                     {helpers.canUser('tickets:delete', true) && (
-                      <DropdownItem text={'Delete'} extraClass={'text-danger'} onClick={() => this.onDeleteClicked()} />
+                      <DropdownItem text={'Удалить'} extraClass={'text-danger'} onClick={() => this.onDeleteClicked()} />
                     )}
                   </Dropdown>
                 </DropdownTrigger>
@@ -303,7 +290,7 @@ class TicketsContainer extends React.Component {
                     <input
                       type='text'
                       id='tickets_Search'
-                      placeholder={'Search'}
+                      placeholder={'Поиск'}
                       className={'ticket-top-search'}
                       value={this.searchTerm}
                       onChange={e => this.onSearchTermChanged(e)}
@@ -326,21 +313,21 @@ class TicketsContainer extends React.Component {
             striped={true}
             headers={[
               <TableHeader key={0} width={45} height={50} component={selectAllCheckbox} />,
-              <TableHeader key={1} width={60} text={'Status'} />,
-              <TableHeader key={2} width={65} text={'#'} />,
-              <TableHeader key={3} width={'23%'} text={'Subject'} />,
-              <TableHeader key={4} width={110} text={'Created'} />,
-              <TableHeader key={5} width={125} text={'Requester'} />,
-              <TableHeader key={6} width={175} text={'Customer'} />,
-              <TableHeader key={7} text={'Assignee'} />,
-              <TableHeader key={8} width={110} text={'Due Date'} />,
-              <TableHeader key={9} text={'Updated'} />
+              <TableHeader key={1} width={60} text={'Статус'} />,
+              <TableHeader key={2} width={65} text={'№'} />,
+              <TableHeader key={3} width={'23%'} text={'Тема'} />,
+              <TableHeader key={4} width={110} text={'Создан'} />,
+              <TableHeader key={5} width={125} text={'Создатель'} />,
+              <TableHeader key={6} width={175} text={'Группа'} />,
+              <TableHeader key={7} text={'Исполнитель'} />,
+              <TableHeader key={8} width={110} text={'Дата окончания'} />,
+              <TableHeader key={9} text={'Изменена'} />
             ]}
           >
             {!this.props.loading && this.props.tickets.size < 1 && (
               <TableRow clickable={false}>
                 <TableCell colSpan={10}>
-                  <h5 style={{ margin: 10 }}>No Tickets Found</h5>
+                  <h5 style={{ margin: 10 }}>Нет данных</h5>
                 </TableCell>
               </TableRow>
             )}

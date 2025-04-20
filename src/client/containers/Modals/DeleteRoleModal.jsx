@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/16/19 5:49 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -57,13 +43,13 @@ class DeleteRoleModal extends React.Component {
       <BaseModal {...this.props} options={{ bgclose: false }}>
         <form className={'uk-form-stacked'} onSubmit={e => this.onFormSubmit(e)}>
           <div className='uk-margin-medium-bottom uk-clearfix'>
-            <h2>Remove Role</h2>
-            <span>Please select the role you wish to assign ALL users to</span>
+            <h2>Удаление роли</h2>
+            <span>Выберите роль, которую вы хотите назначить ВСЕМ пользователям с выбраной ролью.</span>
             {/*<hr style={{ margin: '10px 0' }} />*/}
           </div>
           <div className='uk-margin-medium-bottom uk-clearfix'>
             <div className='uk-float-left' style={{ width: '100%' }}>
-              <label className={'uk-form-label nopadding nomargin'}>Type</label>
+              <label className={'uk-form-label nopadding nomargin'}>Тип</label>
               <SingleSelect
                 showTextbox={false}
                 items={mappedRoles}
@@ -74,22 +60,20 @@ class DeleteRoleModal extends React.Component {
           </div>
           <div className='uk-margin-medium-bottom uk-clearfix'>
             <span className='uk-text-danger'>
-              WARNING: This will change all accounts with role <strong>{role.get('name')}</strong> to the selected role
-              above.
+              ВНИМАНИЕ: Это изменит все учетные записи с ролью <strong>{role.get('name')}</strong> с выбраной ролью выше.
               {role.get('isAdmin') && (
                 <span className={'uk-text-danger'}>
-                  The role you are about to remove is an admin role. Please ensure there is another Admin role or you
-                  could be locked out!
+                 Роль, которую вы собираетесь удалить, является ролью администратора. Убедитесь, что есть другая роль администратора, иначе вы можете быть заблокированы!
                 </span>
               )}
               <br />
               <br />
-              <strong style={{ fontSize: '18px' }}>This is permanent!</strong>
+              <strong style={{ fontSize: '18px' }}>Это навсегда!</strong>
             </span>
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Cancel'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Delete'} style={'danger'} flat={true} type={'submit'} />
+            <Button text={'Отмена'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Удалить'} style={'danger'} flat={true} type={'submit'} />
           </div>
         </form>
       </BaseModal>

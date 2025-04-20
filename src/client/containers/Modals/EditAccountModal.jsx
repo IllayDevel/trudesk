@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/23/19 4:03 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -200,7 +186,7 @@ class EditAccountModal extends React.Component {
                 <div className='mediumProfilePic' style={{ position: 'relative' }}>
                   <img
                     src={`/uploads/users/${profilePicture}`}
-                    alt='Profile Picture'
+                    alt='Аватара'
                     ref={r => (this.uploadProfileImage = r)}
                   />
                 </div>
@@ -218,7 +204,7 @@ class EditAccountModal extends React.Component {
           <form className='uk-form-stacked' onSubmit={e => this.onSubmitSaveAccount(e)}>
             <div className='uk-margin-medium-bottom uk-clearfix'>
               <div className='uk-float-left' style={{ width: '50%', paddingRight: '20px' }}>
-                <label className={'uk-form-label'}>Name</label>
+                <label className={'uk-form-label'}>Имя</label>
                 <input
                   type='text'
                   className={'md-input'}
@@ -228,7 +214,7 @@ class EditAccountModal extends React.Component {
                 />
               </div>
               <div className='uk-float-left uk-width-1-2'>
-                <label className={'uk-form-label'}>Title</label>
+                <label className={'uk-form-label'}>Фамилия</label>
                 <input
                   type='text'
                   className={'md-input'}
@@ -242,7 +228,7 @@ class EditAccountModal extends React.Component {
               <div>
                 <div className='uk-margin-medium-bottom uk-clearfix'>
                   <div className='uk-float-left' style={{ width: '50%', paddingRight: '20px' }}>
-                    <label className={'uk-form-label'}>Password</label>
+                    <label className={'uk-form-label'}>Пароль</label>
                     <input
                       type='password'
                       className={'md-input'}
@@ -251,7 +237,7 @@ class EditAccountModal extends React.Component {
                     />
                   </div>
                   <div className='uk-float-left uk-width-1-2'>
-                    <label className={'uk-form-label'}>Confirm Password</label>
+                    <label className={'uk-form-label'}>Подтверждение пароля</label>
                     <input
                       type='password'
                       className={'md-input'}
@@ -274,7 +260,7 @@ class EditAccountModal extends React.Component {
             </div>
             {edit && (
               <div className='uk-margin-medium-bottom'>
-                <label className={'uk-form-label'}>Role</label>
+                <label className={'uk-form-label'}>Роль</label>
                 <SingleSelect
                   items={roles}
                   width={'100'}
@@ -287,7 +273,7 @@ class EditAccountModal extends React.Component {
             )}
             {this.props.groups && customer && (
               <div className='uk-margin-medium-bottom'>
-                <label className='uk-form-label'>Groups</label>
+                <label className='uk-form-label'>Группы</label>
                 <MultiSelect
                   items={groups}
                   initialSelected={user.groups.map(i => i._id)}
@@ -300,7 +286,7 @@ class EditAccountModal extends React.Component {
             {!customer && (
               <div>
                 <div className='uk-margin-medium-bottom'>
-                  <label className='uk-form-label'>Teams</label>
+                  <label className='uk-form-label'>Команды</label>
                   <MultiSelect
                     items={teams}
                     initialSelected={user.teams.map(i => i._id)}
@@ -311,7 +297,7 @@ class EditAccountModal extends React.Component {
                 </div>
 
                 <div className='uk-margin-medium-bottom'>
-                  <label className='uk-form-label'>Departments</label>
+                  <label className='uk-form-label'>Отделы</label>
                   <MultiSelect
                     items={departments}
                     initialSelected={user.departments.map(i => i._id)}
@@ -322,9 +308,9 @@ class EditAccountModal extends React.Component {
               </div>
             )}
             <div className='uk-modal-footer uk-text-right'>
-              <Button text={'Close'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+              <Button text={'Закрыть'} flat={true} waves={true} extraClass={'uk-modal-close'} />
               <Button
-                text={'Save Account'}
+                text={'Сохранить'}
                 flat={true}
                 waves={true}
                 style={'primary'}

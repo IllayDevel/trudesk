@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/5/19 3:16 AM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -79,11 +65,11 @@ class EditPriorityPartial extends React.Component {
         <form onSubmit={e => this.onSubmitEditPriority(e, priority)}>
           <div className='uk-grid uk-grid-collapse uk-clearfix'>
             <div className='uk-width-1-4'>
-              <label>Priority Name</label>
+              <label>Имя приоритета</label>
               <input name={'name'} type='text' className={'md-input'} defaultValue={priority.get('name')} />
             </div>
             <div className='uk-width-1-4 uk-padding-small-sides'>
-              <label>SLA Overdue (minutes)</label>
+              <label>Просрочка SLA (в минутах)</label>
               <input name={'overdueIn'} type='text' className={'md-input'} defaultValue={priority.get('overdueIn')} />
             </div>
             <div className='uk-width-1-4 uk-padding-small-sides'>
@@ -96,8 +82,8 @@ class EditPriorityPartial extends React.Component {
             </div>
             <div className='uk-width-1-4'>
               <div className='md-btn-group uk-float-right uk-text-right mt-5'>
-                <Button small={true} text={'Cancel'} onClick={() => this.toggleEditPriority()} />
-                <Button text={'Save'} small={true} style={'success'} type={'submit'} />
+                <Button small={true} text={'Отмена'} onClick={() => this.toggleEditPriority()} />
+                <Button text={'Сохранить'} small={true} style={'success'} type={'submit'} />
               </div>
             </div>
           </div>

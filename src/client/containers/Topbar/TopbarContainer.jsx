@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/10/19 12:41 AM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React, { createRef } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -159,7 +145,7 @@ class TopbarContainer extends React.Component {
                     {sessionUser && helpers.canUser('tickets:create') && (
                       <li className='top-bar-icon nopadding'>
                         <button
-                          title={'Create Ticket'}
+                          title={'Создать задачу'}
                           className={'anchor'}
                           onClick={() => this.props.showModal('CREATE_TICKET')}
                         >
@@ -169,14 +155,14 @@ class TopbarContainer extends React.Component {
                     )}
                     {sessionUser && helpers.canUser('tickets:create') && (
                       <li className='top-bar-icon nopadding nohover'>
-                        <i className='material-icons separator'>remove</i>
+                        <i className='material-icons separator'>clear</i>
                       </li>
                     )}
                     {/* End Create Ticket Perm */}
                     <li className='top-bar-icon'>
                       <PDropdownTrigger target={this.conversationsDropdownPartial}>
                         <a
-                          title={'Conversations'}
+                          title={'Обсуждения'}
                           className='no-ajaxy uk-vertical-align'
                           onClick={e => TopbarContainer.onConversationsClicked(e)}
                         >
@@ -186,7 +172,7 @@ class TopbarContainer extends React.Component {
                     </li>
                     <li className='top-bar-icon'>
                       <PDropdownTrigger target={this.notificationsDropdownPartial}>
-                        <a title={'Notifications'} className={'no-ajaxy uk-vertical-align'}>
+                        <a title={'Уведомления'} className={'no-ajaxy uk-vertical-align'}>
                           <i className='material-icons'>notifications</i>
                           <span
                             className={'alert uk-border-circle label ' + (this.notificationCount < 1 ? 'hide' : '')}
@@ -196,21 +182,21 @@ class TopbarContainer extends React.Component {
                         </a>
                       </PDropdownTrigger>
                     </li>
-                    {/*<li className='top-bar-icon'>*/}
-                    {/*  <OffCanvasTrigger target={'online-user-list'}>*/}
-                    {/*    <a title={'Online Users'} className='no-ajaxy'>*/}
-                    {/*      <i className='material-icons'>people_alt</i>*/}
-                    {/*      <span*/}
-                    {/*        className={*/}
-                    {/*          'online-user-count alert uk-border-circle label ' +*/}
-                    {/*          (this.activeUserCount < 1 ? 'hide' : '')*/}
-                    {/*        }*/}
-                    {/*      >*/}
-                    {/*        {this.activeUserCount}*/}
-                    {/*      </span>*/}
-                    {/*    </a>*/}
-                    {/*  </OffCanvasTrigger>*/}
-                    {/*</li>*/}
+                    <li className='top-bar-icon'>
+                      <OffCanvasTrigger target={'online-user-list'}>
+                        <a title={'Пользователи в сети'} className='no-ajaxy'>
+                          <i className='material-icons'>people_alt</i>
+                          <span
+                            className={
+                              'online-user-count alert uk-border-circle label ' +
+                              (this.activeUserCount < 1 ? 'скрыть' : '')
+                            }
+                          >
+                            {this.activeUserCount}
+                          </span>
+                        </a>
+                      </OffCanvasTrigger>
+                    </li>
                     <li className='top-bar-icon nopadding nohover'>
                       <i className='material-icons separator'>remove</i>
                     </li>

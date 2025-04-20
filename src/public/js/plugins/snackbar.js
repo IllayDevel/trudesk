@@ -24,13 +24,13 @@
 
   Snackbar.current = null
   var $defaults = {
-    text: 'Default Text',
+    text: 'Текст по умолчанию',
     textColor: '#ffffff',
 
     width: 'auto',
 
     showAction: true,
-    actionText: 'Dismiss',
+    actionText: 'Скрыть',
     actionTextColor: '#4caf50',
 
     backgroundColor: '#323232',

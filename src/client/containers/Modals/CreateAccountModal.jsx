@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/26/19 11:49 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -146,13 +132,13 @@ class CreateAccountModal extends React.Component {
           <div className='uk-width-1-1'>
             <div style={{ width: '82px', height: '82px', float: 'left', marginRight: '24px', position: 'relative' }}>
               <div className='mediumProfilePic' style={{ position: 'relative' }}>
-                <img src={`/uploads/users/defaultProfile.jpg`} alt='Profile Picture' />
+                <img src={`/uploads/users/defaultProfile.jpg`} alt='Аватара' />
               </div>
             </div>
             <div className='user-heading-content'>
               <h2>
-                <span className={'uk-text-truncate'}>Create Account</span>
-                <span className='sub-heading'>Please provide account details below</span>
+                <span className={'uk-text-truncate'}>Создать пользователя</span>
+                <span className='sub-heading'>Укажите данные пользователя ниже</span>
               </h2>
             </div>
           </div>
@@ -160,7 +146,7 @@ class CreateAccountModal extends React.Component {
         <div style={{ margin: '24px 24px 0 24px' }}>
           <form className='uk-form-stacked' onSubmit={e => this.onFormSubmit(e)}>
             <div className='uk-margin-medium-bottom'>
-              <label className='uk-form-label'>Username</label>
+              <label className='uk-form-label'>Логин</label>
               <input
                 type='text'
                 className={'md-input'}
@@ -168,12 +154,12 @@ class CreateAccountModal extends React.Component {
                 onChange={e => this.onInputChanged(e, 'username')}
                 data-validation={'length'}
                 data-validation-length={'min4'}
-                data-validation-error-msg={'Username must contain at least 4 characters.'}
+                data-validation-error-msg={'Имя пользователя должно содержать не менее 4 символов.'}
               />
             </div>
             <div className='uk-margin-medium-bottom uk-clearfix'>
               <div className='uk-float-left' style={{ width: '50%', paddingRight: '20px' }}>
-                <label className={'uk-form-label'}>Name</label>
+                <label className={'uk-form-label'}>Имя</label>
                 <input
                   type='text'
                   className={'md-input'}
@@ -181,11 +167,11 @@ class CreateAccountModal extends React.Component {
                   onChange={e => this.onInputChanged(e, 'fullname')}
                   data-validation={'length'}
                   data-validation-length={'min1'}
-                  data-validation-error-msg={'Name must contain at least 1 character.'}
+                  data-validation-error-msg={'Имя должно содержать не менее 1 символа.'}
                 />
               </div>
               <div className='uk-float-left uk-width-1-2'>
-                <label className={'uk-form-label'}>Title</label>
+                <label className={'uk-form-label'}>Фамилия</label>
                 <input
                   type='text'
                   className={'md-input'}
@@ -196,7 +182,7 @@ class CreateAccountModal extends React.Component {
             </div>
             <div className='uk-margin-medium-bottom uk-clearfix'>
               <div className='uk-float-left' style={{ width: '50%', paddingRight: '20px' }}>
-                <label className={'uk-form-label'}>Password</label>
+                <label className={'uk-form-label'}>Пароль</label>
                 <input
                   type='password'
                   className={'md-input'}
@@ -206,7 +192,7 @@ class CreateAccountModal extends React.Component {
                 />
               </div>
               <div className='uk-float-left uk-width-1-2'>
-                <label className={'uk-form-label'}>Confirm Password</label>
+                <label className={'uk-form-label'}>Подтверждение пароля</label>
                 <input
                   type='password'
                   className={'md-input'}
@@ -214,7 +200,7 @@ class CreateAccountModal extends React.Component {
                   value={this.passwordConfirm}
                   onChange={e => this.onInputChanged(e, 'passwordConfirm')}
                   data-validation='confirmation'
-                  data-validation-error-msg={'Password does not match'}
+                  data-validation-error-msg={'Пароли не совпадают'}
                 />
               </div>
             </div>
@@ -229,7 +215,7 @@ class CreateAccountModal extends React.Component {
               />
             </div>
             <div className='uk-margin-medium-bottom'>
-              <label className={'uk-form-label'}>Role</label>
+              <label className={'uk-form-label'}>Роль</label>
               <SingleSelect
                 items={roles}
                 width={'100'}
@@ -241,13 +227,13 @@ class CreateAccountModal extends React.Component {
                 style={{ display: 'inline-block', marginTop: '10px', fontWeight: 'bold', color: '#d85030' }}
                 ref={r => (this.roleSelectErrorMessage = r)}
               >
-                Please select a role for this user
+                Выберите роль пользователя
               </span>
             </div>
             {!this.isAgentRole && (
               <div>
                 <div className='uk-margin-medium-bottom'>
-                  <label className='uk-form-label'>Groups</label>
+                  <label className='uk-form-label'>Группы</label>
                   <MultiSelect
                     items={groups}
                     onChange={e => this.onGroupSelectChange(e)}
@@ -258,7 +244,7 @@ class CreateAccountModal extends React.Component {
                     style={{ display: 'inline-block', marginTop: '3px', fontWeight: 'bold', color: '#d85030' }}
                     ref={r => (this.groupSelectErrorMessage = r)}
                   >
-                    Please select a group for this user.
+                    Выберите группы пользователя.
                   </span>
                 </div>
               </div>
@@ -266,14 +252,14 @@ class CreateAccountModal extends React.Component {
             {this.isAgentRole && (
               <div>
                 <div className='uk-margin-medium-bottom'>
-                  <label className='uk-form-label'>Teams</label>
+                  <label className='uk-form-label'>Команды</label>
                   <MultiSelect items={teams} onChange={() => {}} ref={r => (this.teamSelect = r)} />
                 </div>
               </div>
             )}
             <div className='uk-modal-footer uk-text-right'>
-              <Button text={'Close'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-              <Button text={'Create Account'} flat={true} waves={true} style={'success'} type={'submit'} />
+              <Button text={'Закрыть'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+              <Button text={'Создать пользователя'} flat={true} waves={true} style={'success'} type={'submit'} />
             </div>
           </form>
         </div>

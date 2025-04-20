@@ -1,16 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Updated:    6/23/19 6:12 PM
- *  Copyright (c) 2014-2019 Trudesk, Inc. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -98,7 +85,7 @@ class AddTagsModal extends React.Component {
     return (
       <BaseModal options={{ bgclose: false }}>
         <div className={'uk-clearfix'}>
-          <h5 style={{ fontWeight: 300 }}>Add Tags</h5>
+          <h5 style={{ fontWeight: 300 }}>Добавить тэги</h5>
           <div>
             <form className='nomargin' onSubmit={e => this.onSubmit(e)}>
               <div className='search-container'>
@@ -108,7 +95,7 @@ class AddTagsModal extends React.Component {
                   className='chosen-select'
                   multiple
                   data-placeholder=' '
-                  data-noresults='No Tags Found for '
+                  data-noresults='Тэги не найдены '
                   ref={r => (this.select = r)}
                 >
                   {mappedTags.map(tag => (
@@ -127,7 +114,7 @@ class AddTagsModal extends React.Component {
               <div className='left' style={{ marginTop: 15 }}>
                 <Button
                   type={'button'}
-                  text={'Clear'}
+                  text={'Очистить'}
                   small={true}
                   flat={true}
                   style={'danger'}
@@ -137,7 +124,7 @@ class AddTagsModal extends React.Component {
               <div className='right' style={{ marginTop: 15 }}>
                 <Button
                   type={'button'}
-                  text={'Cancel'}
+                  text={'Отмена'}
                   style={'secondary'}
                   small={true}
                   flat={true}
@@ -145,7 +132,7 @@ class AddTagsModal extends React.Component {
                   extraClass={'uk-modal-close'}
                   ref={r => (this.closeButton = r)}
                 />
-                <Button type={'submit'} text={'Save Tags'} style={'success'} small={true} waves={true} />
+                <Button type={'submit'} text={'Сохранить тэги'} style={'success'} small={true} waves={true} />
               </div>
             </form>
           </div>

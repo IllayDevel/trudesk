@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    3/27/19 11:41 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeObservable, observable } from 'mobx'
@@ -89,11 +75,11 @@ class EditTeamModal extends React.Component {
       <BaseModal {...this.props} options={{ bgclose: false }}>
         <SpinLoader active={this.props.accountsLoading} />
         <div className={'mb-25'}>
-          <h2>Edit Team</h2>
+          <h2>Редактирование команды</h2>
         </div>
         <form className={'uk-form-stacked'} onSubmit={e => this.onSaveTeamEdit(e)}>
           <div className={'uk-margin-medium-bottom'}>
-            <label>Team Name</label>
+            <label>Имя команды</label>
             <input
               type='text'
               className={'md-input'}
@@ -101,11 +87,11 @@ class EditTeamModal extends React.Component {
               onChange={e => this.onInputChange(e)}
               data-validation='length'
               data-validation-length={'2-25'}
-              data-validation-error-msg={'Please enter a valid Team name. (Must contain 2 characters)'}
+              data-validation-error-msg={'Введите правильное имя команды. (Имя должно быть не менее 2 символов)'}
             />
           </div>
           <div className={'uk-margin-medium-bottom'}>
-            <label style={{ marginBottom: 5 }}>Team Members</label>
+            <label style={{ marginBottom: 5 }}>Челны команды</label>
             <MultiSelect
               items={mappedAccounts}
               initialSelected={selectedMembers}
@@ -114,8 +100,8 @@ class EditTeamModal extends React.Component {
             />
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Close'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Save Team'} flat={true} waves={true} style={'primary'} type={'submit'} />
+            <Button text={'Закрыть'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Сохранить команду'} flat={true} waves={true} style={'primary'} type={'submit'} />
           </div>
         </form>
       </BaseModal>

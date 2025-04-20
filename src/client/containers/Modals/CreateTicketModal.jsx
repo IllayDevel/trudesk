@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/10/19 3:06 AM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -117,7 +103,7 @@ class CreateTicketModal extends React.Component {
     if (this.issueText.length < minIssueLength) {
       $errorBorderWrap.css({ border: '1px solid #E74C3C' })
       const mdeError = $(
-        `<div class="mde-error uk-float-left uk-text-left">Please enter a valid issue. Issue must contain at least ${minIssueLength} characters</div>`
+        `<div class="mde-error uk-float-left uk-text-left">Пожалуйста, введите допустимый вопрос. Вопрос должен содержать не менее ${minIssueLength} символов</div>`
       )
       $mdeError = $issueTextbox.siblings('.editor-statusbar').find('.mde-error')
       if ($mdeError.length < 1) $issueTextbox.siblings('.editor-statusbar').prepend(mdeError)
@@ -183,23 +169,23 @@ class CreateTicketModal extends React.Component {
       <BaseModal {...this.props} options={{ bgclose: false }}>
         <form className={'uk-form-stacked'} onSubmit={e => this.onFormSubmit(e)}>
           <div className='uk-margin-medium-bottom'>
-            <label>Subject</label>
+            <label>Тема</label>
             <input
               type='text'
               name={'subject'}
               className={'md-input'}
               data-validation='length'
               data-validation-length={`min${viewdata.get('ticketSettings').get('minSubject')}`}
-              data-validation-error-msg={`Please enter a valid Subject. Subject must contain at least ${viewdata
+              data-validation-error-msg={`Пожалуйста, введите допустимую тему.  Вопрос должен содержать не менее ${viewdata
                 .get('ticketSettings')
-                .get('minSubject')} characters.`}
+                .get('minSubject')} символов.`}
             />
           </div>
           <div className='uk-margin-medium-bottom'>
             <Grid>
               {allowAgentUserTickets && (
                 <GridItem width={'1-3'}>
-                  <label className={'uk-form-label'}>Owner</label>
+                  <label className={'uk-form-label'}>Владелец</label>
                   <SingleSelect
                     showTextbox={true}
                     items={mappedAccounts}
@@ -210,7 +196,7 @@ class CreateTicketModal extends React.Component {
                 </GridItem>
               )}
               <GridItem width={allowAgentUserTickets ? '2-3' : '1-1'}>
-                <label className={'uk-form-label'}>Group</label>
+                <label className={'uk-form-label'}>Группа</label>
                 <SingleSelect
                   showTextbox={false}
                   items={mappedGroups}
@@ -225,7 +211,7 @@ class CreateTicketModal extends React.Component {
           <div className='uk-margin-medium-bottom'>
             <Grid>
               <GridItem width={'1-3'}>
-                <label className={'uk-form-label'}>Type</label>
+                <label className={'uk-form-label'}>Тип</label>
                 <SingleSelect
                   showTextbox={false}
                   items={mappedTicketTypes}
@@ -238,7 +224,7 @@ class CreateTicketModal extends React.Component {
                 />
               </GridItem>
               <GridItem width={'2-3'}>
-                <label className={'uk-form-label'}>Tags</label>
+                <label className={'uk-form-label'}>Тэги</label>
                 <SingleSelect
                   showTextbox={false}
                   items={mappedTicketTags}
@@ -250,7 +236,7 @@ class CreateTicketModal extends React.Component {
             </Grid>
           </div>
           <div className='uk-margin-medium-bottom'>
-            <label className={'uk-form-label'}>Priority</label>
+            <label className={'uk-form-label'}>Приоритет</label>
             <div
               ref={i => (this.priorityLoader = i)}
               style={{ height: '32px', width: '32px', position: 'relative' }}
@@ -291,7 +277,7 @@ class CreateTicketModal extends React.Component {
             </div>
           </div>
           <div className='uk-margin-medium-bottom'>
-            <span>Description</span>
+            <span>Описание</span>
             <div className='error-border-wrap uk-clearfix'>
               <EasyMDE
                 ref={i => (this.issueMde = i)}
@@ -302,14 +288,14 @@ class CreateTicketModal extends React.Component {
               />
             </div>
             <span style={{ marginTop: '6px', display: 'inline-block', fontSize: '11px' }} className={'uk-text-muted'}>
-              Please try to be as specific as possible. Please include any details you think may be relevant, such as
-              {/* eslint-disable-next-line react/no-unescaped-entities */}
-              troubleshooting steps you've taken.
+             Пожалуйста, постарайтесь быть максимально конкретными. Пожалуйста, включите любые детали, которые, по вашему мнению, могут быть важны, например:
+             {/* eslint-disable-next-line react/no-unescaped-entities */}
+             предпринятые вами действия по устранению проблемы.
             </span>
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Cancel'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Create'} style={'primary'} flat={true} type={'submit'} />
+            <Button text={'Отмена'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Создать'} style={'primary'} flat={true} type={'submit'} />
           </div>
         </form>
       </BaseModal>

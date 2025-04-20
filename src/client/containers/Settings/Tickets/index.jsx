@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    1/20/19 4:46 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -192,13 +178,13 @@ class TicketsSettings extends React.Component {
     e.preventDefault()
     e.persist()
     const name = e.target.name.value
-    if (name.length < 2) return helpers.UI.showSnackbar('Invalid Tag Name', true)
+    if (name.length < 2) return helpers.UI.showSnackbar('Неверное имя тэга', true)
 
     axios
       .put(`/api/v1/tags/${tagId}`, { name })
       .then(res => {
         TicketsSettings.toggleEditTag(e)
-        helpers.UI.showSnackbar(`Tag: ${res.data.tag.name} updated successfully`)
+        helpers.UI.showSnackbar(`Тэг: ${res.data.tag.name} обновлен`)
         this.getTicketTags(null, this.tagsPagination.currentPage)
       })
       .catch(err => {
@@ -206,32 +192,32 @@ class TicketsSettings extends React.Component {
 
         const errorText = err.response.data.error
         Log.error(errorText, err.response)
-        helpers.UI.showSnackbar(`Error: ${errorText}`, true)
+        helpers.UI.showSnackbar(`Ошибка: ${errorText}`, true)
       })
   }
 
   onRemoveTagClicked (e, tag) {
     UIKit.modal.confirm(
-      `Really delete tag <strong>${tag.get()}</strong><br />
-        <i style="font-size: 13px; color: #e53935">This will remove the tag from all associated tickets.</i>`,
+      `Действительно хотите удалить тег <strong>${tag.get()}</strong><br />
+        <i style="font-size: 13px; color: #e53935">Это удалит тег со всех связанных задач.</i>`,
       () => {
         axios
           .delete(`/api/v1/tags/${tag.get('_id')}`)
           .then(res => {
             if (res.data.success) {
-              helpers.UI.showSnackbar(`Successfully removed tag: ${tag.get('name')}`)
+              helpers.UI.showSnackbar(`Тег успешно удален: ${tag.get('name')}`)
 
               this.getTicketTags(null, this.tagsPagination.currentPage)
             }
           })
           .catch(error => {
             const errorText = error.response.data.error
-            helpers.UI.showSnackbar(`Error: ${errorText}`, true)
+            helpers.UI.showSnackbar(`Ошибка: ${errorText}`, true)
             Log.error(errorText, error.response)
           })
       },
       {
-        labels: { Ok: 'Yes', Cancel: 'No' },
+        labels: { Ok: 'Да', Cancel: 'No' },
         confirmButtonClass: 'md-btn-danger'
       }
     )
@@ -246,8 +232,8 @@ class TicketsSettings extends React.Component {
     return (
       <div className={active ? 'active' : 'hide'}>
         <SettingItem
-          title={'Default Ticket Type'}
-          subtitle={'Default ticket type for newly created tickets.'}
+          title={'Тип задачи по умолчанию'}
+          subtitle={'Тип задачи по умолчанию при создании новой задачи.'}
           component={
             <SingleSelect
               items={mappedTypes}
@@ -261,17 +247,17 @@ class TicketsSettings extends React.Component {
           }
         />
         <SettingItem
-          title={'Allow Public Tickets'}
+          title={'Разрешить публичные задачи'}
           subtitle={
             <div>
-              Allow the creation of tickets by users that are unregistered. (
+              Разрешить создание тикетов незарегистрированным пользователям. (
               <a href={viewdata.get('hosturl') + '/newissue'}>{viewdata.get('hosturl') + '/newissue'}</a>)
             </div>
           }
           component={
             <EnableSwitch
               stateName={'allowPublicTickets'}
-              label={'Enable'}
+              label={'Включить'}
               checked={this.getSetting('allowPublicTickets')}
               onChange={e => {
                 this.onAllowPublicTicketsChange(e)
@@ -280,13 +266,13 @@ class TicketsSettings extends React.Component {
           }
         />
         <SettingItem
-          title={'Allow Agents to Submit Tickets on Behalf of User'}
-          subtitle={<div>Allow the creation of tickets by agents on behalf of users.</div>}
-          tooltip={'Setting takes affect after refresh.'}
+          title={'Разрешить агентам отправлять задачи от имени пользователя'}
+          subtitle={<div>Разрешить создание задач агентами от имени пользователей.</div>}
+          tooltip={'Настройка вступит в силу после обновления.'}
           component={
             <EnableSwitch
               stateName={'allowAgentUserTickets'}
-              label={'Enable'}
+              label={'Включить'}
               checked={this.getSetting('allowAgentUserTickets')}
               onChange={e => {
                 this.onAllowAgentUserTicketsChange(e)
@@ -295,13 +281,13 @@ class TicketsSettings extends React.Component {
           }
         />
         <SettingItem
-          title={'Show Overdue Tickets'}
-          subtitle={'Enable/Disable flashing of tickets based on SLA time of type priority.'}
-          tooltip={'If disabled, priority SLA times will not mark tickets overdue.'}
+          title={'Показать просроченные задачи'}
+          subtitle={'Включить/Отключить мигание задач на основе времени SLA по типу приоритета.'}
+          tooltip={'Если отключено, сроки SLA по приоритетам не будут помечать задачи как просроченные.'}
           component={
             <EnableSwitch
               stateName={'showOverdueTickets'}
-              label={'Enable'}
+              label={'Включить'}
               checked={this.getSetting('showOverdueTickets')}
               onChange={e => {
                 this.onShowOverdueChange(e)
@@ -326,8 +312,8 @@ class TicketsSettings extends React.Component {
         {/*  }*/}
         {/*/>*/}
         <SettingItem
-          title={'Minimum Subject Length'}
-          subtitle={'Minimum character limit for ticket subject'}
+          title={'Минимальная длина темы'}
+          subtitle={'Минимальное количество символов для темы задачи'}
           component={
             <NumberWithSave
               stateName={'minSubjectLength'}
@@ -338,8 +324,8 @@ class TicketsSettings extends React.Component {
           }
         />
         <SettingItem
-          title={'Minimum Issue Length'}
-          subtitle={'Minimum character limit for ticket issue'}
+          title={'Минимальная длина решения'}
+          subtitle={'Минимальная длина описания проблемы в задаче.'}
           component={
             <NumberWithSave
               stateName={'minIssueLength'}
@@ -350,11 +336,11 @@ class TicketsSettings extends React.Component {
           }
         />
         <SplitSettingsPanel
-          title={'Ticket Types'}
-          subtitle={'Create/Modify Ticket Types'}
+          title={'Типы задач'}
+          subtitle={'Создать/изменить типы задач'}
           rightComponent={
             <Button
-              text={'Create'}
+              text={'Создать'}
               style={'success'}
               flat={true}
               extraClass={'md-btn-wave'}
@@ -368,11 +354,11 @@ class TicketsSettings extends React.Component {
           })}
         />
         <SettingItem
-          title={'Ticket Priorities'}
-          subtitle={'Ticket priorities set the level of SLAs for each ticket.'}
+          title={'Приоритеты задач'}
+          subtitle={'Приоритеты задач устанавливают уровень SLA для каждого тикета.'}
           component={
             <Button
-              text={'Create'}
+              text={'Создать'}
               style={'success'}
               flat={true}
               waves={true}
@@ -392,14 +378,14 @@ class TicketsSettings extends React.Component {
                     titleCss={{ color: p.get('htmlColor') }}
                     subtitle={
                       <div>
-                        SLA Overdue: <strong>{p.get('durationFormatted')}</strong>
+                        Просрочен SLA: <strong>{p.get('durationFormatted')}</strong>
                       </div>
                     }
                     component={
                       <ButtonGroup classNames={'uk-float-right'}>
-                        <Button text={'Edit'} small={true} onClick={e => TicketsSettings.toggleEditPriority(e)} />
+                        <Button text={'Редактировать'} small={true} onClick={e => TicketsSettings.toggleEditPriority(e)} />
                         <Button
-                          text={'Remove'}
+                          text={'Удалить'}
                           small={true}
                           style={'danger'}
                           disabled={disableRemove}
@@ -460,11 +446,11 @@ class TicketsSettings extends React.Component {
         {/*</SettingItem>*/}
 
         <SettingItem
-          title={'Ticket Tags'}
-          subtitle={'Create/Modify Ticket Tags'}
+          title={'Тэги задач'}
+          subtitle={'Создать/изменить теги задач'}
           component={
             <Button
-              text={'Create'}
+              text={'Создать'}
               style={'success'}
               flat={true}
               waves={true}
@@ -479,7 +465,7 @@ class TicketsSettings extends React.Component {
           <Grid extraClass={'uk-margin-medium-bottom'}>
             {this.props.tagsSettings.tags.size < 1 && (
               <div style={{ width: '100%', padding: '55px', textAlign: 'center' }}>
-                <h3 style={{ fontSize: '24px', fontWeight: '300' }}>No Tags Found</h3>
+                <h3 style={{ fontSize: '24px', fontWeight: '300' }}>Нет тэгов</h3>
               </div>
             )}
             <SpinLoader active={this.props.tagsSettings.loading} extraClass={'panel-bg'} />
@@ -508,14 +494,14 @@ class TicketsSettings extends React.Component {
                               <GridItem width={'1-2'} extraClass={'uk-text-right'}>
                                 <ButtonGroup classNames={'mt-5'}>
                                   <Button
-                                    text={'edit'}
+                                    text={'Редактировать'}
                                     flat={true}
                                     waves={true}
                                     small={true}
                                     onClick={e => TicketsSettings.toggleEditTag(e)}
                                   />
                                   <Button
-                                    text={'remove'}
+                                    text={'Удалить'}
                                     flat={true}
                                     waves={true}
                                     style={'danger'}
@@ -538,7 +524,7 @@ class TicketsSettings extends React.Component {
                               <GridItem width={'1-3'} style={{ paddingTop: '10px' }}>
                                 <ButtonGroup classNames={'uk-float-right uk-text-right'}>
                                   <Button
-                                    text={'cancel'}
+                                    text={'Отмена'}
                                     flat={true}
                                     waves={true}
                                     small={true}
@@ -546,7 +532,7 @@ class TicketsSettings extends React.Component {
                                   />
                                   <Button
                                     type={'submit'}
-                                    text={'save'}
+                                    text={'Сохранить'}
                                     flat={true}
                                     waves={true}
                                     small={true}

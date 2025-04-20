@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    3/3/19 1:03 AM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -32,7 +18,7 @@ import ZoneBox from 'components/ZoneBox'
 
 const templateBody = ({ template, handleSaveSubject, handleOpenEditor }) => (
   <div>
-    <h3 className={'font-light mb-5'}>Template Description</h3>
+    <h3 className={'font-light mb-5'}>Описание шаблона</h3>
     <p className='mb-10' style={{ fontSize: '13px' }}>
       {template.description}
     </p>
@@ -41,11 +27,11 @@ const templateBody = ({ template, handleSaveSubject, handleOpenEditor }) => (
       <input name={'id'} type='hidden' value={template._id} />
       <div className='uk-input-group'>
         <div className='md-input-wrapper'>
-          <label>Mail Subject</label>
+          <label>Тема письма</label>
           <input name={'subject'} type='text' className={'md-input'} defaultValue={template.subject} />
         </div>
         <span className='uk-input-group-addon'>
-          <Button type={'submit'} text={'Save'} small={true} />
+          <Button type={'submit'} text={'Сохранить'} small={true} />
         </span>
       </div>
     </form>
@@ -53,9 +39,9 @@ const templateBody = ({ template, handleSaveSubject, handleOpenEditor }) => (
     <Zone extraClass={'uk-margin-medium-top'}>
       <ZoneBox>
         <div className={'uk-float-left'}>
-          <h6 style={{ margin: 0, fontSize: '16px', lineHeight: '14px' }}>Edit Template (Disabled)</h6>
+          <h6 style={{ margin: 0, fontSize: '16px', lineHeight: '14px' }}>Изменить шаблон (отключено)</h6>
           <h5 className={'uk-text-muted'} style={{ margin: '2px 0 0 0', fontSize: '12px' }}>
-            Customize template - Currently disabled
+            Настроить шаблон — в настоящее время отключено
           </h5>
         </div>
         <div className='uk-float-right uk-width-1-3 uk-clearfix'>
@@ -66,7 +52,7 @@ const templateBody = ({ template, handleSaveSubject, handleOpenEditor }) => (
               onClick={handleOpenEditor}
               disabled={true}
             >
-              Open Editor
+              Открыть редактор
             </button>
           </div>
         </div>
@@ -163,32 +149,30 @@ class MailerSettingsTemplates extends React.Component {
     return (
       <div>
         <SettingItem
-          title={'Enable New Email Templates'}
+          title={'Включить шаблоны для электронной почты'}
           subtitle={
             <div>
-              The new email notification system is currently in beta. Please See{' '}
-              <a href='https://forum.trudesk.io/t/beta-email-notification-templates'>Email Notification Templates</a>{' '}
-              for more information.
+              Новая система уведомлений по электронной почте в настоящее время находится в стадии бета-тестирования.
             </div>
           }
           component={
             <EnableSwitch
               stateName={'emailBeta'}
-              label={'Enable'}
+              label={'Включить'}
               checked={this.betaEnabled}
               onChange={e => this.onEmailBetaChange(e)}
             />
           }
         />
         <SplitSettingsPanel
-          title={'Notification Templates'}
+          title={'Шаблоны уведомлений'}
           subtitle={
             <div>
-              Customize email notification templates.
-              <strong> Note: Not all templates have been converted for the beta</strong>
+             Настройте шаблоны уведомлений по электронной почте.
+              <strong> Примечание: не все шаблоны были преобразованы для бета-версии.</strong>
             </div>
           }
-          rightComponent={<h4 className={'uk-display-block uk-text-danger mt-20 mr-20'}>BETA FEATURE</h4>}
+          rightComponent={<h4 className={'uk-display-block uk-text-danger mt-20 mr-20'}>BETA</h4>}
           menuItems={mappedValues}
         />
       </div>

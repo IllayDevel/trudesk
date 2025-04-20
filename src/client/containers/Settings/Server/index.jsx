@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    9/18/21 11:41 AM
- *  Copyright (c) 2014-2021. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -73,8 +59,8 @@ class ServerSettingsController extends React.Component {
       .catch(error => {
         helpers.hideLoader()
         Log.error(error.responseText)
-        Log.error('Unable to restart server. Server must run under PM2 and Account must have admin rights.')
-        helpers.UI.showSnackbar('Unable to restart server. Are you an Administrator?', true)
+        Log.error('Невозможно перезапустить сервер. Сервер должен работать под PM2, а учетная запись должна иметь права администратора..')
+        helpers.UI.showSnackbar('Невозможно перезапустить сервер. Вы администратор?', true)
       })
       .then(() => {
         this.setState({ restarting: false })
@@ -93,9 +79,9 @@ class ServerSettingsController extends React.Component {
 
     if (val === true) {
       UIKit.modal.confirm(
-        `<h2>Are you sure?</h2>
+        `<h2>Вы уверены?</h2>
         <p style="font-size: 15px;">
-            <span class="uk-text-danger" style="font-size: 15px;">This will force logout every user and prevent non-administrators from logging in.</span> 
+            <span class="uk-text-danger" style="font-size: 15px;">Это приведет к принудительному выходу из системы всех пользователей и не позволит войти в систему лицам, не являющимся администраторами.</span> 
         </p>
         `,
         () => {
@@ -111,7 +97,7 @@ class ServerSettingsController extends React.Component {
             })
         },
         {
-          labels: { Ok: 'Yes', Cancel: 'No' },
+          labels: { Ok: 'Да', Cancel: 'Нет' },
           confirmButtonClass: 'md-btn-danger'
         }
       )
@@ -129,11 +115,11 @@ class ServerSettingsController extends React.Component {
     return (
       <div className={active ? 'active' : 'hide'}>
         <SettingItem
-          title={'Restart Server'}
-          subtitle={'Restart the Trudesk Instance. '}
+          title={'Перезапустить сервер'}
+          subtitle={'Перезапустите экземпляр Trudesk. '}
           component={
             <Button
-              text={'Restart'}
+              text={'Перезапустить'}
               flat={false}
               waves={true}
               style={'danger'}
@@ -144,12 +130,12 @@ class ServerSettingsController extends React.Component {
           }
         />
         <SettingItem
-          title={'Maintenance Mode'}
-          subtitle={'Only Administrators are allowed to login.'}
+          title={'Режим обслуживания'}
+          subtitle={'Вход разрешен только администраторам.'}
           component={
             <EnableSwitch
               stateName={'maintenanceMode'}
-              label={'Enable'}
+              label={'Включить'}
               checked={this.maintenanceModeEnabled}
               onChange={e => this.onMaintenanceModeChange(e)}
             />

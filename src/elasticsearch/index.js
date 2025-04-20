@@ -1,17 +1,3 @@
-/*
-     .                              .o8                     oooo
-   .o8                             "888                     `888
- .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
-   888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
-   888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
-   888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
-   "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- ========================================================================
- Created:    09/08/2018
- Author:     Chris Brame
-
- **/
-
 const _ = require('lodash')
 const path = require('path')
 const nconf = require('nconf')
@@ -88,7 +74,7 @@ ES.setupHooks = () => {
         refresh: 'true'
       })
     } catch (e) {
-      winston.warn('Elasticsearch Error: ' + e)
+      winston.warn('Ошибка Elasticsearch: ' + e)
     }
   })
 
@@ -135,7 +121,7 @@ ES.setupHooks = () => {
         body: cleanedTicket
       })
     } catch (e) {
-      winston.warn('Elasticsearch Error: ' + e)
+      winston.warn('Ошибка Elasticsearch: ' + e)
       return false
     }
   })
@@ -143,7 +129,7 @@ ES.setupHooks = () => {
   emitter.on('ticket:created', data => {
     ticketSchema.getTicketById(data.ticket._id, function (err, ticket) {
       if (err) {
-        winston.warn('Elasticsearch Error: ' + err)
+        winston.warn('Ошибка Elasticsearch: ' + err)
         return false
       }
 
@@ -189,7 +175,7 @@ ES.setupHooks = () => {
           body: cleanedTicket
         },
         function (err) {
-          if (err) winston.warn('Elasticsearch Error: ' + err)
+          if (err) winston.warn('Ошибка Elasticsearch: ' + err)
         }
       )
     })
@@ -208,7 +194,7 @@ ES.buildClient = host => {
 
 ES.rebuildIndex = async () => {
   if (global.esRebuilding) {
-    winston.warn('Index Rebuild attempted while already rebuilding!')
+    winston.warn('Попытка перестроения индекса во время перестроения!')
     return
   }
   try {
@@ -222,7 +208,7 @@ ES.rebuildIndex = async () => {
 
     ES.buildClient(ELASTICSEARCH_URI)
 
-    global.esStatus = 'Rebuilding...'
+    global.esStatus = 'Восстановление...'
 
     const fork = require('child_process').fork
     const esFork = fork(path.join(__dirname, 'rebuildIndexChild.js'), {
@@ -239,7 +225,7 @@ ES.rebuildIndex = async () => {
     global.forks.push({ name: 'elasticsearchRebuild', fork: esFork })
 
     esFork.once('message', function (data) {
-      global.esStatus = data.success ? 'Connected' : 'Error'
+      global.esStatus = data.success ? 'Подключен' : 'Ошибка'
       global.esRebuilding = false
     })
 
@@ -259,7 +245,7 @@ ES.rebuildIndex = async () => {
 ES.getIndexCount = async callback => {
   return new Promise((resolve, reject) => {
     if (_.isUndefined(ES.esclient)) {
-      const error = 'Elasticsearch has not initialized'
+      const error = 'Elasticsearch не инициализирован'
 
       if (typeof callback === 'function') callback(error)
 
@@ -275,7 +261,7 @@ ES.getIndexCount = async callback => {
 
 ES.init = async callback => {
   try {
-    global.esStatus = 'Not Configured'
+    global.esStatus = 'Не настроен'
     global.esRebuilding = false
 
     const s = await settingUtil.getSettings()
@@ -288,8 +274,8 @@ ES.init = async callback => {
       return false
     }
 
-    winston.debug('Initializing Elasticsearch...')
-    global.esStatus = 'Initializing'
+    winston.debug('Инициализация Elasticsearch...')
+    global.esStatus = 'Инициализация'
     ES.timezone = settings.timezone.value
 
     ES.setupHooks()
@@ -301,8 +287,8 @@ ES.init = async callback => {
 
     await checkConnection()
 
-    winston.info('Elasticsearch Running... Connected.')
-    global.esStatus = 'Connected'
+    winston.info('Elasticsearch запущен... Подключен.')
+    global.esStatus = 'Подключен'
 
     if (typeof callback === 'function') callback()
   } catch (e) {
@@ -315,7 +301,7 @@ ES.checkConnection = async callback => {
   try {
     await checkConnection()
 
-    global.esStatus = 'Connected'
+    global.esStatus = 'Подключен'
 
     if (typeof callback === 'function') return callback()
   } catch (e) {

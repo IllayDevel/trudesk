@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    3/2/22 10:58 PM
- *  Copyright (c) 2014-2022. All rights reserved.
- */
-
 import React, { createRef } from 'react'
 import PropTypes from 'prop-types'
 import PageTitle from 'components/PageTitle'
@@ -72,11 +58,11 @@ class AccountsImportContainer extends React.Component {
   render () {
     return (
       <>
-        <PageTitle title={'Accounts Import'} />
+        <PageTitle title={'Импорт пользователей'} />
         <PageContent>
           <div className='uk-grid uk-grid-medium uk-margin-medium-bottom js-wizard-select-wrapper'>
             <div className='uk-width-1-1 uk-margin-small-bottom'>
-              <h3>Select Import Type</h3>
+              <h3>Выберите тип имортируемых данных</h3>
             </div>
             <div className='uk-width-1-3'>
               <div
@@ -88,12 +74,12 @@ class AccountsImportContainer extends React.Component {
               >
                 <div className='tru-card-content'>
                   <div className='right uk-margin-small-top'>
-                    <i className='material-icons font-size-40'>description</i>
+                    <i className='material-icons font-size-40'>Описание</i>
                   </div>
                   <h2 className='uk-margin-remove'>
                     <span className='md-color-white uk-margin-small-bottom'>CSV</span>
                     <span className='md-color-white uk-text-small uk-display-block'>
-                      Import accounts from an uploaded csv
+                      Ипортировать пользователей из файла csv
                     </span>
                   </h2>
                 </div>
@@ -119,7 +105,7 @@ class AccountsImportContainer extends React.Component {
                   <h2 className='uk-margin-remove'>
                     <span className='md-color-white uk-margin-small-bottom'>JSON</span>
                     <span className='md-color-white uk-text-small uk-display-block'>
-                      Import accounts from an uploaded json file
+                      Ипортировать пользователей из файла json
                     </span>
                   </h2>
                 </div>
@@ -140,7 +126,7 @@ class AccountsImportContainer extends React.Component {
                   <h2 className='uk-margin-remove'>
                     <span className='md-color-white uk-margin-small-bottom'>LDAP</span>
                     <span className='md-color-white uk-text-small uk-display-block'>
-                      Import accounts from an enterprise ldap server.
+                      Ипортировать пользователей из ldap сервера.
                     </span>
                   </h2>
                 </div>
@@ -161,34 +147,34 @@ class AccountsImportContainer extends React.Component {
                 style={{ position: 'relative', minHeight: 265 }}
               >
                 <div className='left'>
-                  <h6 style={{ padding: '10px 0 0 15px', margin: 0, fontSize: 16 }}>JSON Account Import Wizard</h6>
+                  <h6 style={{ padding: '10px 0 0 15px', margin: 0, fontSize: 16 }}>Помощник импорта из формата JSON</h6>
                   <h5
                     style={{ padding: '0 0 10px 15px', margin: '-2px 0 0 0', fontSize: 12 }}
                     className='uk-text-muted'
                   >
-                    This wizard will walk you through importing accounts from a json file.
+                    Этот мастер проведет вас через процесс импорта учетных записей из файла JSON.
                   </h5>
                 </div>
                 <div className='right' style={{ margin: 15 }}>
                   <button className='btn md-btn md-btn-warning js-wizard-cancel' onClick={this.resetWizards}>
-                    Cancel
+                    Отмена
                   </button>
                 </div>
                 <hr className='nomargin' />
                 <form className='uk-form-stacked' id='wizard_json_form'>
                   <div id='wizard_json'>
-                    <h3>File Upload</h3>
+                    <h3>Загрузить файл</h3>
                     <section>
                       <h2 className='heading-wiz'>
-                        File Upload
-                        <span className='sub-heading'>Upload json file containing user data to import.</span>
+                        Загрузить файл
+                        <span className='sub-heading'>Загрузите файл json, содержащий данные пользователей для импорта.</span>
                       </h2>
                       <hr className='md-hr' />
                       <div id='json-upload-drop' className='uk-file-upload'>
-                        <p className='uk-text'>Drop file to upload</p>
-                        <p className='uk-text-muted uk-text-small uk-margin-small-bottom'>or</p>
+                        <p className='uk-text'>Перетащите файл мышкой</p>
+                        <p className='uk-text-muted uk-text-small uk-margin-small-bottom'>или</p>
                         <a className='uk-form-file md-btn'>
-                          choose file
+                          выберите файл
                           <input type='file' id='json-upload-select' />
                         </a>
                       </div>
@@ -197,10 +183,10 @@ class AccountsImportContainer extends React.Component {
                         <div className='uk-progress-bar' style={{ width: 0 }} />
                       </div>
                     </section>
-                    <h3>Review Uploaded Data</h3>
+                    <h3>Просмотр загруженных данных</h3>
                     <section>
                       <h2 className='heading-wiz'>
-                        Review Uploaded Data
+                        Просмотр загруженных данных
                         <span className='sub-heading'>Below is the parsed contents of the uploaded csv file.</span>
                       </h2>
 

@@ -47,7 +47,7 @@ class BackupRestoreOverlay extends React.Component {
       >
         <div className='page-center'>
           <h1 className='text-light' style={{ color: '#444' }}>
-            Restore in Progress...
+            Восстановление в процессе...
           </h1>
           <div className='uk-progress uk-progress-striped uk-progress-accent uk-active' style={{ height: '31px' }}>
             <div className='uk-progress-bar' style={{ width: '100%' }} />

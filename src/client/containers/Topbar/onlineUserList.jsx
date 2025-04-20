@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/12/19 11:49 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment-timezone'
@@ -65,23 +51,23 @@ class OnlineUserListPartial extends React.Component {
 
   fromNow (timezone, date) {
     if (isUndefined(date)) {
-      return 'Never'
+      return 'Никогда'
     }
     moment.updateLocale('en', {
       relativeTime: {
-        future: 'in %s',
-        past: '%s ago',
-        s: 'a few seconds',
-        m: '1m',
-        mm: '%dm',
-        h: '1h',
-        hh: '%dh',
-        d: '1d',
-        dd: '%dd',
-        M: '1mo',
-        MM: '%dmos',
-        y: '1y',
-        yy: '%dyrs'
+        future: 'в %s',
+        past: '%s назад',
+        s: 'несколько секунд',
+        m: '1м',
+        mm: '%dм',
+        h: '1ч',
+        hh: '%dч',
+        d: '1д',
+        dd: '%dд',
+        M: '1мес',
+        MM: '%dмес',
+        y: '1г',
+        yy: '%dлет'
       }
     })
 
@@ -94,10 +80,10 @@ class OnlineUserListPartial extends React.Component {
   render () {
     const { timezone, users } = this.props
     return (
-      <OffCanvas title={'Online Users'} id={'online-user-list'}>
+      <OffCanvas title={'Пользователи онлайн'} id={'online-user-list'}>
         <div style={{ padding: '0 5px' }}>
           <div className='active-now'>
-            <h5>Active Now</h5>
+            <h5>В сети</h5>
             <div className='online-list-wrapper'>
               <ul className='online-list'>
                 {entries(this.activeUsers).map(([key, value]) => {
@@ -109,11 +95,11 @@ class OnlineUserListPartial extends React.Component {
                       <a className={'no-ajaxy'} onClick={e => this.onUserClicked(e, value.user._id)}>
                         <div className='user-list-user'>
                           <div className='image'>
-                            <img src={`/uploads/users/${image}`} alt='Profile Pic' />
+                            <img src={`/uploads/users/${image}`} alt='Автара' />
                           </div>
                           <span className='online-status' data-user-status-id={value.user._id} />
                           <div className={'user-name' + (isAgentOrAdmin ? ' _agent' : '')}>
-                            {value.user.fullname + (isAgentOrAdmin ? ' - Agent' : '')}
+                            {value.user.fullname + (isAgentOrAdmin ? ' - Агент' : '')}
                           </div>
                         </div>
                       </a>
@@ -124,13 +110,13 @@ class OnlineUserListPartial extends React.Component {
             </div>
           </div>
 
-          <h5>More Conversations</h5>
+          <h5>Действия</h5>
           <div className='user-list-wrapper' style={{ lineHeight: 'normal' }}>
             <div
               className='online-list-search-box search-box'
               style={{ borderTop: '1px solid rgba(0,0,0,0.1)', borderRight: 'none' }}
             >
-              <input type='text' placeholder={'Search'} />
+              <input type='text' placeholder={'Поиск'} />
             </div>
             <ul className='user-list'>
               {users.map(user => {
@@ -141,7 +127,7 @@ class OnlineUserListPartial extends React.Component {
                     <a className='no-ajaxy' onClick={e => OnlineUserListPartial.onUserClicked(e, user.get('_id'))}>
                       <div className='user-list-user'>
                         <div className='image'>
-                          <img src={`/uploads/users/${image}`} alt='Profile Picture' />
+                          <img src={`/uploads/users/${image}`} alt='Аватара' />
                         </div>
                       </div>
                       <span

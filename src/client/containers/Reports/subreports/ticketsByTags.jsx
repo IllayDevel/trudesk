@@ -61,7 +61,7 @@ const ReportTicketsByTags = () => {
 
   useEffect(() => {
     const g = groupsState.groups.map(group => ({ text: group.get('name'), value: group.get('_id') })).toArray()
-    g.push({ text: 'All', value: 'all' })
+    g.push({ text: 'Все', value: 'all' })
     setGroups(g)
   }, [groupsState])
 
@@ -94,7 +94,7 @@ const ReportTicketsByTags = () => {
         hover={false}
         header={
           <div style={{ padding: '10px 15px' }}>
-            <h4 style={{ width: '100%', textAlign: 'left', fontSize: '14px', margin: 0 }}>Tickets by Tags</h4>
+            <h4 style={{ width: '100%', textAlign: 'left', fontSize: '14px', margin: 0 }}>Задачи по тэгам</h4>
           </div>
         }
         extraContentClass={'nopadding'}
@@ -102,7 +102,7 @@ const ReportTicketsByTags = () => {
           <div>
             <SpinLoader active={isLoading} />
             <p className='padding-15 nomargin uk-text-muted'>
-              Please select the start and end dates and which groups to include in the report.
+            Выберите начальную и конечную даты, а также группы, которые следует включить в отчет.
             </p>
             <hr className='uk-margin-large-bottom' style={{ marginTop: 0 }} />
             <div className={'padding-15'}>
@@ -110,20 +110,19 @@ const ReportTicketsByTags = () => {
                 <Grid>
                   <GridItem width={'1-2'}>
                     <label htmlFor='filterDate_Start' className={'uk-form-label nopadding nomargin'}>
-                      Start Date
+                      Дата начала
                     </label>
                     <DatePicker
                       name={'filterDate_start'}
                       format={helpers.getShortDateFormat()}
                       onChange={e => {
                         setStartDate(e.target.value)
-                      }}
-                      value={startDate}
+                      }}                     
                     />
                   </GridItem>
                   <GridItem width={'1-2'}>
                     <label htmlFor='filterDate_End' className={'uk-form-label nopadding nomargin'}>
-                      End Date
+                      Дата окончания
                     </label>
                     <DatePicker
                       name={'filterDate_End'}
@@ -131,13 +130,13 @@ const ReportTicketsByTags = () => {
                       onChange={e => {
                         setEndDate(e.target.value)
                       }}
-                      value={endDate}
+                     
                     />
                   </GridItem>
                   <GridItem width={'1-1'}>
                     <div className='uk-margin-medium-top uk-margin-medium-bottom'>
                       <label htmlFor='groups' className={'uk-form-label'}>
-                        Groups
+                        Группы
                       </label>
                       <SingleSelect
                         multiple={true}
@@ -151,7 +150,7 @@ const ReportTicketsByTags = () => {
                   </GridItem>
                   <GridItem width={'1-1'}>
                     <div className='uk-margin-medium-top uk-margin-medium-bottom'>
-                      <label htmlFor='priorities'>Tags</label>
+                      <label htmlFor='priorities'>Тэги</label>
                       <SingleSelect
                         multiple={true}
                         items={tags}
@@ -166,7 +165,7 @@ const ReportTicketsByTags = () => {
                     <div>
                       <Button
                         disabled={isLoading}
-                        text={'Generate'}
+                        text={'Сформировать'}
                         type={'submit'}
                         style={'primary'}
                         waves={true}

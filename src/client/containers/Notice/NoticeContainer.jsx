@@ -61,7 +61,7 @@ class NoticeContainer extends React.Component {
       .then(() => {
         this.props.socket.emit(NOTICE_CLEAR)
 
-        helpers.UI.showSnackbar('Notice has been deactivated', false)
+        helpers.UI.showSnackbar('Уведомление деактивировано', false)
       })
       .catch(err => {
         Log.error(err)
@@ -75,16 +75,16 @@ class NoticeContainer extends React.Component {
 
   onDeleteNotice (noticeId) {
     UIKit.modal.confirm(
-      `<h2>Are you sure?</h2>
+      `<h2>Вы уверены?</h2>
         <p style="font-size: 15px;">
-            <span class="uk-text-danger" style="font-size: 15px;">This is a permanent action.</span> 
+            <span class="uk-text-danger" style="font-size: 15px;">Это необратимое действие.</span> 
         </p>
         `,
       () => {
         this.props.deleteNotice({ _id: noticeId })
       },
       {
-        labels: { Ok: 'Yes', Cancel: 'No' },
+        labels: { Ok: 'Да', Cancel: 'Нет' },
         confirmButtonClass: 'md-btn-danger'
       }
     )
@@ -135,14 +135,14 @@ class NoticeContainer extends React.Component {
     return (
       <div>
         <PageTitle
-          title={'Notices'}
+          title={'Уведомления'}
           shadow={false}
           rightComponent={
             <div className={'uk-grid uk-grid-collapse'}>
               <div className={'uk-width-1-1 mt-15 uk-text-right'}>
                 {helpers.canUser('notices:deactivate') && (
                   <Button
-                    text={'Deactivate'}
+                    text={'Деактивировать'}
                     flat={false}
                     small={true}
                     waves={false}
@@ -152,7 +152,7 @@ class NoticeContainer extends React.Component {
                 )}
                 {helpers.canUser('notices:create') && (
                   <Button
-                    text={'Create'}
+                    text={'Создать'}
                     flat={false}
                     small={true}
                     waves={false}
@@ -174,16 +174,16 @@ class NoticeContainer extends React.Component {
             striped={true}
             headers={[
               <TableHeader key={0} width={45} height={50} text={''} />,
-              <TableHeader key={1} width={'20%'} text={'Name'} />,
-              <TableHeader key={2} width={'60%'} text={'Message'} />,
-              <TableHeader key={3} width={'10%'} text={'Date'} />,
+              <TableHeader key={1} width={'20%'} text={'Имя'} />,
+              <TableHeader key={2} width={'60%'} text={'Сообщение'} />,
+              <TableHeader key={3} width={'10%'} text={'Дата'} />,
               <TableHeader key={4} width={150} text={''} />
             ]}
           >
             {!this.props.loading && this.props.notices.size < 1 && (
               <TableRow clickable={false}>
                 <TableCell colSpan={10}>
-                  <h5 style={{ margin: 10 }}>No Notices Found</h5>
+                  <h5 style={{ margin: 10 }}>Нет данных</h5>
                 </TableCell>
               </TableRow>
             )}

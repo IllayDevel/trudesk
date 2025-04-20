@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/7/19 1:36 AM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
@@ -108,16 +94,16 @@ class MailerSettings_Mailer extends React.Component {
 
   testMailerSettings (e) {
     e.preventDefault()
-    helpers.UI.showSnackbar('Testing...')
+    helpers.UI.showSnackbar('Тестирование...')
 
     axios
       .post('/api/v1/settings/testmailer', {})
       .then(() => {
-        helpers.UI.showSnackbar('Successfully Connected')
+        helpers.UI.showSnackbar('Успешно подключен')
       })
       .catch(err => {
         if (!err.response) return Log.error(err)
-        helpers.UI.showSnackbar('Connection Failed. Did you apply settings?', true)
+        helpers.UI.showSnackbar('Соединение не удалось. Вы применили настройки??', true)
         Log.error(err.response.data.error, err.response)
       })
   }
@@ -125,12 +111,12 @@ class MailerSettings_Mailer extends React.Component {
   render () {
     return (
       <SettingItem
-        title={'Mailer'}
-        subtitle={'Preferences for trudesk to send email notifications to users.'}
+        title={'Почта'}
+        subtitle={'Настройки для trudesk по отправке уведомлений по электронной почте пользователям.'}
         component={
           <EnableSwitch
             stateName={'mailerEnabled'}
-            label={'Enabled'}
+            label={'Включен'}
             onChange={e => this.onEnableMailerChanged(e)}
             checked={this.getSetting('mailerEnabled')}
           />
@@ -141,14 +127,14 @@ class MailerSettings_Mailer extends React.Component {
             <div className={'uk-right'}>
               <EnableSwitch
                 stateName={'mailerSSL'}
-                label={'Use SSLv3'}
+                label={'SSLv3'}
                 style={{ position: 'absolute', top: '5px', right: '-5px', zIndex: '99', margin: '0' }}
                 checked={this.state.mailerSSL}
                 disabled={!this.getSetting('mailerEnabled')}
                 onChange={e => this.onMailerSSLChanged(e)}
               />
             </div>
-            <label>Mail Server</label>
+            <label>Почтовый сервер</label>
             <input
               type='text'
               className={'md-input md-input-width-medium'}
@@ -159,7 +145,7 @@ class MailerSettings_Mailer extends React.Component {
             />
           </div>
           <div className='uk-margin-medium-bottom'>
-            <label>Port</label>
+            <label>Порт</label>
             <input
               type='text'
               className={'md-input md-input-width-medium'}
@@ -170,7 +156,7 @@ class MailerSettings_Mailer extends React.Component {
             />
           </div>
           <div className='uk-margin-medium-bottom'>
-            <label>Auth Username</label>
+            <label>Имя пользователя</label>
             <input
               type='text'
               className={'md-input md-input-width-medium'}
@@ -181,7 +167,7 @@ class MailerSettings_Mailer extends React.Component {
             />
           </div>
           <div className='uk-margin-medium-bottom'>
-            <label>Auth Password</label>
+            <label>Пароль</label>
             <input
               type='password'
               className={'md-input md-input-width-medium'}
@@ -192,7 +178,7 @@ class MailerSettings_Mailer extends React.Component {
             />
           </div>
           <div className='uk-margin-medium-bottom'>
-            <label>From Address</label>
+            <label>Адрес отправителя</label>
             <input
               type='text'
               className={'md-input md-input-width-medium'}
@@ -204,7 +190,7 @@ class MailerSettings_Mailer extends React.Component {
           </div>
           <div className='uk-clearfix'>
             <Button
-              text={'Test Settings'}
+              text={'Проверить настройки'}
               type={'button'}
               flat={true}
               waves={true}
@@ -214,7 +200,7 @@ class MailerSettings_Mailer extends React.Component {
               onClick={e => this.testMailerSettings(e)}
             />
             <Button
-              text={'Apply'}
+              text={'Применить'}
               type={'submit'}
               style={'success'}
               extraClass={'uk-float-right'}

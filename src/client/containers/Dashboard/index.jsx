@@ -59,7 +59,7 @@ class DashboardContainer extends React.Component {
       ? moment(this.props.dashboardState.lastUpdated, 'MM/DD/YYYY hh:mm:ssa')
           .tz(tz)
           .format(formatString)
-      : 'Cache Still Loading...'
+      : 'Кэш все еще загружается...'
 
     const closedPercent = this.props.dashboardState.closedCount
       ? Math.round((this.props.dashboardState.closedCount / this.props.dashboardState.ticketCount) * 100).toString()
@@ -68,18 +68,18 @@ class DashboardContainer extends React.Component {
     return (
       <div>
         <PageTitle
-          title={'Dashboard'}
+          title={'Панель управления'}
           rightComponent={
             <div>
               <div className={'uk-float-right'} style={{ minWidth: 250 }}>
                 <div style={{ marginTop: 8 }}>
                   <SingleSelect
                     items={[
-                      { text: 'Last 30 Days', value: '30' },
-                      { text: 'Last 60 Days', value: '60' },
-                      { text: 'Last 90 Days', value: '90' },
-                      { text: 'Last 180 Days', value: '180' },
-                      { text: 'Last 365 Days', value: '365' }
+                      { text: 'Последние 30 дней', value: '30' },
+                      { text: 'Последние 60 дней', value: '60' },
+                      { text: 'Последние 90 дней', value: '90' },
+                      { text: 'Последние 180 дней', value: '180' },
+                      { text: 'Последние 365 дней', value: '365' }
                     ]}
                     defaultValue={'30'}
                     onSelectChange={e => this.onTimespanChange(e)}
@@ -87,7 +87,7 @@ class DashboardContainer extends React.Component {
                 </div>
               </div>
               <div className={'uk-float-right uk-text-muted uk-text-small'} style={{ margin: '23px 25px 0 0' }}>
-                <strong>Last Updated: </strong>
+                <strong>Последнее обновление: </strong>
                 <span>{lastUpdatedFormatted}</span>
               </div>
             </div>
@@ -103,7 +103,7 @@ class DashboardContainer extends React.Component {
                       <PeityBar values={'5,3,9,6,5,9,7'} />
                     </div>
                     <span className='uk-text-muted uk-text-small'>
-                      Total Tickets (last {this.timespan.toString()}d)
+                      Всего задач (last {this.timespan.toString()}d)
                     </span>
 
                     <h2 className='uk-margin-remove'>
@@ -120,7 +120,7 @@ class DashboardContainer extends React.Component {
                     <div className='right uk-margin-top uk-margin-small-right'>
                       <PeityPie type={'donut'} value={(closedPercent !== 'NaN' ? closedPercent : '0') + '/100'} />
                     </div>
-                    <span className='uk-text-muted uk-text-small'>Tickets Completed</span>
+                    <span className='uk-text-muted uk-text-small'>Задач закрыто</span>
 
                     <h2 className='uk-margin-remove'>
                       <span>{closedPercent !== 'NaN' ? closedPercent : '0'}</span>%
@@ -136,10 +136,10 @@ class DashboardContainer extends React.Component {
                     <div className='right uk-margin-top uk-margin-small-right'>
                       <PeityLine values={'5,3,9,6,5,9,7,3,5,2'} />
                     </div>
-                    <span className='uk-text-muted uk-text-small'>Avg Response Time</span>
+                    <span className='uk-text-muted uk-text-small'>Среднее время ответа</span>
 
                     <h2 className='uk-margin-remove'>
-                      <CountUp endNumber={this.props.dashboardState.ticketAvg || 0} extraText={'hours'} />
+                      <CountUp endNumber={this.props.dashboardState.ticketAvg || 0} extraText={'часов'} />
                     </h2>
                   </div>
                 }
@@ -149,7 +149,7 @@ class DashboardContainer extends React.Component {
               <TruCard
                 header={
                   <div className='uk-text-left'>
-                    <h6 style={{ padding: 15, margin: 0, fontSize: '14px' }}>Ticket Breakdown</h6>
+                    <h6 style={{ padding: 15, margin: 0, fontSize: '14px' }}>Распределение задач</h6>
                   </div>
                 }
                 fullSize={true}
@@ -174,7 +174,7 @@ class DashboardContainer extends React.Component {
                 style={{ minHeight: 256 }}
                 header={
                   <div className='uk-text-left'>
-                    <h6 style={{ padding: 15, margin: 0, fontSize: '14px' }}>Top 5 Groups</h6>
+                    <h6 style={{ padding: 15, margin: 0, fontSize: '14px' }}>Топ 5 групп</h6>
                   </div>
                 }
                 content={
@@ -192,7 +192,7 @@ class DashboardContainer extends React.Component {
                 style={{ minHeight: 256 }}
                 header={
                   <div className='uk-text-left'>
-                    <h6 style={{ padding: 15, margin: 0, fontSize: '14px' }}>Top 10 Tags</h6>
+                    <h6 style={{ padding: 15, margin: 0, fontSize: '14px' }}>Топ 10 тэгов</h6>
                   </div>
                 }
                 content={
@@ -207,7 +207,7 @@ class DashboardContainer extends React.Component {
                 style={{ minHeight: 250 }}
                 header={
                   <div className='uk-text-left'>
-                    <h6 style={{ padding: 15, margin: 0, fontSize: '14px' }}>Overdue Tickets</h6>
+                    <h6 style={{ padding: 15, margin: 0, fontSize: '14px' }}>Просроченные задачи</h6>
                   </div>
                 }
                 content={
@@ -215,10 +215,10 @@ class DashboardContainer extends React.Component {
                     <table className='uk-table'>
                       <thead>
                         <tr>
-                          <th className='uk-text-nowrap'>Ticket</th>
-                          <th className='uk-text-nowrap'>Status</th>
-                          <th className='uk-text-nowrap'>Subject</th>
-                          <th className='uk-text-nowrap uk-text-right'>Last Updated</th>
+                          <th className='uk-text-nowrap'>Задача</th>
+                          <th className='uk-text-nowrap'>Статус</th>
+                          <th className='uk-text-nowrap'>Тема</th>
+                          <th className='uk-text-nowrap uk-text-right'>Последние обновление</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -229,7 +229,7 @@ class DashboardContainer extends React.Component {
                                 <a href={`/tickets/${ticket.get('uid')}`}>T#{ticket.get('uid')}</a>
                               </td>
                               <td className={'uk-width-1-10 uk-text-nowrap'}>
-                                <span className={'uk-badge ticket-status-open uk-width-1-1 ml-0'}>Open</span>
+                                <span className={'uk-badge ticket-status-open uk-width-1-1 ml-0'}>Открыть</span>
                               </td>
                               <td className={'uk-width-6-10'}>{ticket.get('subject')}</td>
                               <td className={'uk-width-2-10 uk-text-right uk-text-muted uk-text-small'}>
@@ -251,7 +251,7 @@ class DashboardContainer extends React.Component {
               <TruCard
                 header={
                   <div className='uk-text-left'>
-                    <h6 style={{ padding: 15, margin: 0, fontSize: '14px' }}>Quick Stats (Last 365 Days)</h6>
+                    <h6 style={{ padding: 15, margin: 0, fontSize: '14px' }}>Быстрая статистика (За последние 365 дней)</h6>
                   </div>
                 }
                 content={
@@ -259,14 +259,14 @@ class DashboardContainer extends React.Component {
                     <table className='uk-table'>
                       <thead>
                         <tr>
-                          <th className='uk-text-nowrap'>Stat</th>
-                          <th className='uk-text-nowrap uk-text-right'>Value</th>
+                          <th className='uk-text-nowrap'>Параметр</th>
+                          <th className='uk-text-nowrap uk-text-right'>Значение</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr className='uk-table-middle'>
                           <td className='uk-width-6-10 uk-text-nowrap uk-text-muted uk-text-small'>
-                            Most tickets by...
+                           Группа по количеству задач
                           </td>
                           <td id='mostRequester' className='uk-width-4-10 uk-text-right  uk-text-small'>
                             {this.props.dashboardState.mostRequester
@@ -279,7 +279,7 @@ class DashboardContainer extends React.Component {
 
                         <tr className='uk-table-middle'>
                           <td className='uk-width-6-10 uk-text-nowrap uk-text-muted uk-text-small'>
-                            Most comments by....
+                            Задача по количеству комментариев
                           </td>
                           <td id='mostCommenter' className='uk-width-4-10 uk-text-right  uk-text-small'>
                             {this.props.dashboardState.mostCommenter
@@ -292,7 +292,7 @@ class DashboardContainer extends React.Component {
 
                         <tr className='uk-table-middle'>
                           <td className='uk-width-6-10 uk-text-nowrap uk-text-muted uk-text-small'>
-                            Most assigned support user....
+                            Задача по количеству назначеных исполнителей
                           </td>
                           <td id='mostAssignee' className='uk-width-4-10 uk-text-right  uk-text-small'>
                             {this.props.dashboardState.mostAssignee
@@ -305,7 +305,7 @@ class DashboardContainer extends React.Component {
 
                         <tr className='uk-table-middle'>
                           <td className='uk-width-6-10 uk-text-nowrap uk-text-muted uk-text-small'>
-                            Most active ticket...
+                            Самые активняе задачи
                           </td>
                           <td className='uk-width-4-10 uk-text-right  uk-text-small'>
                             <a id='mostActiveTicket' href='#'>

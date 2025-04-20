@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    1/20/19 4:46 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -179,15 +165,15 @@ class AppearanceSettings extends React.Component {
     return (
       <div className={active ? 'active' : 'hide'}>
         <SettingItem
-          title='Site Logo'
+          title='Логотип'
           subtitle={
             <div>
-              Upload site logo to display in top navigation. <i>Note: Resize to max width of 140px</i>
+            Загрузите логотип сайта для отображения в верхней части навигации. <i>Примечание: измените размер до максимальной ширины в 140 пикселей.</i>
             </div>
           }
           component={
             <UploadButtonWithX
-              buttonText={'Upload Logo'}
+              buttonText={'Загрузить логотип'}
               uploadAction={'/settings/general/uploadlogo'}
               extAllowed={'*.(jpg|jpeg|gif|png)'}
               showX={this.getSettingsValue('hasCustomLogo')}
@@ -202,15 +188,15 @@ class AppearanceSettings extends React.Component {
         />
 
         <SettingItem
-          title='Page Logo'
+          title='Логотип страницы авторизации'
           subtitle={
             <div>
-              Upload logo to display within page views. <i>Note: Used on login page (min-width: 400px)</i>
+              Загрузите логотип для отображения при просмотре страницы авторизации'. <i>Примечание: минимальная ширина: 400 пикселей</i>
             </div>
           }
           component={
             <UploadButtonWithX
-              buttonText={'Upload Logo'}
+              buttonText={'Загрузить логотип'}
               uploadAction={'/settings/general/uploadpagelogo'}
               extAllowed={'*.(jpg|jpeg|gif|png)'}
               showX={this.getSettingsValue('hasCustomPageLogo')}
@@ -222,11 +208,11 @@ class AppearanceSettings extends React.Component {
         />
 
         <SettingItem
-          title='Favicon'
-          subtitle={'Upload a custom favicon'}
+          title='Иконка'
+          subtitle={'Загрузить иконку favicon'}
           component={
             <UploadButtonWithX
-              buttonText={'Upload Favicon'}
+              buttonText={'Загрузить favicon'}
               uploadAction={'/settings/general/uploadfavicon'}
               extAllowed={'*.(jpg|jpeg|gif|png|ico)'}
               showX={this.getSettingsValue('hasCustomFavicon')}
@@ -240,11 +226,11 @@ class AppearanceSettings extends React.Component {
           }
         />
         <SettingItem
-          title='Color Scheme'
-          subtitle='Select the colors for your color scheme.'
+          title='Цветовая схема'
+          subtitle='Выберите цвета для вашей цветовой схемы.'
           component={
             <Button
-              text={'Save'}
+              text={'Сохранить'}
               flat={true}
               style={'success'}
               extraClass={'uk-float-right mt-10'}
@@ -257,8 +243,8 @@ class AppearanceSettings extends React.Component {
           <Zone>
             <ZoneBox>
               <SettingSubItem
-                title='Built-in Color Scheme'
-                subtitle='Select a predefined color scheme'
+                title='Встроенные цветовые схемы'
+                subtitle='Выберите встроенную цветовую схему'
                 component={
                   <SingleSelect
                     width='60%'
@@ -283,8 +269,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Header Background'
-                subtitle='Background color of the header'
+                title='Фон заголовка'
+                subtitle='Цвет фона заголовка'
                 component={
                   <ColorSelector
                     ref={cs => {
@@ -298,8 +284,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Header Primary'
-                subtitle='Text and icon color within the header'
+                title='Основной цвет заголовка'
+                subtitle='Цвет текста и значка в заголовке'
                 component={
                   <ColorSelector
                     ref={cs => {
@@ -313,8 +299,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Primary'
-                subtitle='Most text and icons'
+                title='Основной цвет'
+                subtitle='Большая часть текста и значков'
                 component={
                   <ColorSelector
                     ref={cs => {
@@ -328,8 +314,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Secondary'
-                subtitle='The main background color'
+                title='Дополнительный цвет'
+                subtitle='Основной цвет фона'
                 component={
                   <ColorSelector
                     ref={cs => {
@@ -343,8 +329,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Tertiary'
-                subtitle='Accent color, used for links, some buttons, and notifications'
+                title='Третичный'
+                subtitle='Акцентный цвет, используемый для ссылок, некоторых кнопок и уведомлений.'
                 component={
                   <ColorSelector
                     ref={cs => {
@@ -358,8 +344,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Quaternary'
-                subtitle='Sidebar background color'
+                title='Четвертичный'
+                subtitle='Цвет фона боковой панели'
                 component={
                   <ColorSelector
                     ref={cs => {

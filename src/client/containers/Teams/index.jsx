@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    3/14/19 12:14 AM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -68,19 +54,19 @@ class TeamsContainer extends React.Component {
 
   onDeleteTeamClick (_id) {
     UIKit.modal.confirm(
-      `<h2>Are you sure?</h2>
+      `<h2>Вы уверены?</h2>
         <p style="font-size: 15px;">
-            <span class="uk-text-danger" style="font-size: 15px;">This is a permanent action.</span> 
+            <span class="uk-text-danger" style="font-size: 15px;">Это действие необратимо.</span> 
         </p>
         <p style="font-size: 12px;">
-            Agents may lose access to resources once this team is deleted.
+            После удаления этой команды агенты могут потерять доступ к ресурсам.
         </p>
         `,
       () => {
         this.props.deleteTeam({ _id })
       },
       {
-        labels: { Ok: 'Yes', Cancel: 'No' },
+        labels: { Ok: 'Да', Cancel: 'Нет' },
         confirmButtonClass: 'md-btn-danger'
       }
     )
@@ -116,11 +102,11 @@ class TeamsContainer extends React.Component {
           <TableCell style={{ textAlign: 'right', paddingRight: 15 }}>
             <ButtonGroup>
               {helpers.canUser('teams:update', true) && (
-                <Button text={'Edit'} small={true} waves={true} onClick={() => this.onEditTeamClick(team.toJS())} />
+                <Button text={'Редактировать'} small={true} waves={true} onClick={() => this.onEditTeamClick(team.toJS())} />
               )}
               {helpers.canUser('teams:delete', true) && (
                 <Button
-                  text={'Delete'}
+                  text={'Удалить'}
                   style={'danger'}
                   small={true}
                   waves={true}
@@ -136,13 +122,13 @@ class TeamsContainer extends React.Component {
     return (
       <div>
         <PageTitle
-          title={'Teams'}
+          title={'Команды'}
           shadow={true}
           rightComponent={
             <div className={'uk-grid uk-grid-collapse'}>
               <div className={'uk-width-1-1 mt-15 uk-text-right'}>
                 <Button
-                  text={'Create'}
+                  text={'Создать'}
                   flat={false}
                   small={true}
                   waves={false}
@@ -156,9 +142,9 @@ class TeamsContainer extends React.Component {
         <PageContent id={'teams-page-content'} padding={0} paddingBottom={0}>
           <Table
             headers={[
-              <TableHeader key={0} width={'25%'} height={40} text={'Name'} padding={'8px 8px 8px 15px'} />,
-              <TableHeader key={1} width={'50%'} text={'Team Members'} />,
-              <TableHeader key={2} width={130} text={'Team Actions'} />
+              <TableHeader key={0} width={'25%'} height={40} text={'Имя'} padding={'8px 8px 8px 15px'} />,
+              <TableHeader key={1} width={'50%'} text={'Члены команды'} />,
+              <TableHeader key={2} width={130} text={'Действия'} />
             ]}
           >
             {this.props.teamsState.teams.size < 1 && (

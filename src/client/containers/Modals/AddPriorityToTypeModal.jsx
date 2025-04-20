@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    2/5/19 1:26 AM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -76,7 +62,7 @@ class AddPriorityToTypeModal extends React.Component {
       .catch(error => {
         const errorText = error.response.data.error
         Log.error(errorText, error.response)
-        helpers.UI.showSnackbar(`Error: ${errorText}`, true)
+        helpers.UI.showSnackbar(`Ошибка: ${errorText}`, true)
       })
   }
 
@@ -86,8 +72,8 @@ class AddPriorityToTypeModal extends React.Component {
       <BaseModal>
         <form className='uk-form-stacked'>
           <div className='uk-margin-medium-bottom uk-clearfix'>
-            <h2>Add Priorities</h2>
-            <span>Please select the priorities you wish to add to type: {type.get('name')}</span>
+            <h2>Добавить приоритет</h2>
+            <span>Пожалуйста, выберите приоритеты, которые вы хотите добавить к типу: {type.get('name')}</span>
           </div>
           <div className='priority-loop zone'>
             {this.getPriorities().map(priority => {
@@ -97,7 +83,7 @@ class AddPriorityToTypeModal extends React.Component {
                     <div className='uk-float-left'>
                       <h5 style={{ color: priority.get('htmlColor'), fontWeight: 'bold' }}>{priority.get('name')}</h5>
                       <p className={'uk-text-muted'}>
-                        SLA Overdue: <strong>{priority.get('durationFormatted')}</strong>
+                        SLA просрочен: <strong>{priority.get('durationFormatted')}</strong>
                       </p>
                     </div>
                     <div className='uk-float-right'>
@@ -113,7 +99,7 @@ class AddPriorityToTypeModal extends React.Component {
                     <div className='uk-float-left'>
                       <h5 style={{ color: priority.get('htmlColor'), fontWeight: 'bold' }}>{priority.get('name')}</h5>
                       <p className={'uk-text-muted'}>
-                        SLA Overdue: <strong>{priority.get('durationFormatted')}</strong>
+                        SLA просрочен: <strong>{priority.get('durationFormatted')}</strong>
                       </p>
                     </div>
                     <div className='uk-float-right'>
@@ -122,7 +108,7 @@ class AddPriorityToTypeModal extends React.Component {
                         className='uk-button uk-button-success mt-10 mr-10 no-ajaxy'
                         onClick={e => this.onAddClick(e, type, priority)}
                       >
-                        Add
+                        Добавить
                       </a>
                       <i
                         className='material-icons uk-text-success mt-10 mr-15'
@@ -137,7 +123,7 @@ class AddPriorityToTypeModal extends React.Component {
             })}
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button type={'button'} flat={true} waves={true} text={'Close'} extraClass={'uk-modal-close'} />
+            <Button type={'button'} flat={true} waves={true} text={'Закрыть'} extraClass={'uk-modal-close'} />
           </div>
         </form>
       </BaseModal>

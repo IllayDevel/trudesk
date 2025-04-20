@@ -1,17 +1,3 @@
-/*
- *       .                             .o8                     oooo
- *    .o8                             "888                     `888
- *  .o888oo oooo d8b oooo  oooo   .oooo888   .ooooo.   .oooo.o  888  oooo
- *    888   `888""8P `888  `888  d88' `888  d88' `88b d88(  "8  888 .8P'
- *    888    888      888   888  888   888  888ooo888 `"Y88b.   888888.
- *    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
- *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
- *  ========================================================================
- *  Author:     Chris Brame
- *  Updated:    1/20/19 4:46 PM
- *  Copyright (c) 2014-2019. All rights reserved.
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -97,42 +83,42 @@ class GeneralSettings extends React.Component {
     return (
       <div className={active ? 'active' : 'hide'}>
         <SettingItem
-          title='Site Title'
+          title='Имя сайта'
           subtitle={
             <div>
-              Title of site. Used as page title. <i>default: Trudesk</i>
+              Название сайта используется как заголовок страницы. <i>по умолчанию: Trudesk</i>
             </div>
           }
           component={SiteTitle}
         />
         <SettingItem
-          title='Site Url'
+          title='Url сайта'
           subtitle={
             <div>
-              Publicly accessible URL of this site. <i>ex: {this.props.viewdata.get('hosturl')}</i>
+              Публично доступный URL этого сайта. <i>пример: {this.props.viewdata.get('hosturl')}</i>
             </div>
           }
           component={SiteUrl}
         />
         <SettingItem
-          title='Server Timezone'
-          subtitle='Set the local server timezone for date display'
-          tooltip='User can override in user profile. Requires Server Restart'
+          title='Часовой пояс сервера'
+          subtitle='Установите часовой пояс локального сервера для отображения точного времени'
+          tooltip='Пользователь может переопределить часовой пояс.'
           component={Timezone}
         />
         <SettingItem
-          title='Time & Date Format'
+          title='Формат даты и времени'
           subtitle={
             <a href='https://momentjs.com/docs/#/displaying/format/' rel='noopener noreferrer' target='_blank'>
-              Moment.js Format Options
+             Формат Moment.js
             </a>
           }
         >
           <Zone>
             <ZoneBox>
               <SettingSubItem
-                title='Time Format'
-                subtitle='Set the format for time display'
+                title='Формат времени'
+                subtitle='Установить формат отображения времени'
                 component={
                   <InputWithSave
                     stateName='timeFormat'
@@ -145,8 +131,8 @@ class GeneralSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Short Date Format'
-                subtitle='Set the format for short dates'
+                title='Короткий формат даты'
+                subtitle='Установите формат для коротких дат'
                 component={
                   <InputWithSave
                     stateName='shortDateFormat'
@@ -159,8 +145,8 @@ class GeneralSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Long Date Format'
-                subtitle='Set the format for long dates'
+                title='Длинный формат даты'
+                subtitle='Установить формат для длинных дат'
                 component={
                   <InputWithSave
                     stateName='longDateFormat'
